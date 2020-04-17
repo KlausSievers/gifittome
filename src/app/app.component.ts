@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { GifService, GifResponse, Gif } from './gif.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,17 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'gifittome';
+
+  private currentGifs: Gif[];
+
+  constructor(
+    private gifService: GifService
+  ) {
+
+    this.gifService.trending().subscribe((data: Gif[]) =>  {
+      this.currentGifs = data;
+      console.log(this.currentGifs);
+    });
+
 }
+};
