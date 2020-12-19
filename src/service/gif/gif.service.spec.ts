@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { TenorService } from './gif.service';
+import { GifService } from './gif.service';
 
-describe('TenorService', () => {
+describe('GifService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: TenorService = TestBed.get(TenorService);
+    const service: GifService = TestBed.get(GifService);
     expect(service).toBeTruthy();
   });
 });

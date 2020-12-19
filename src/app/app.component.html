@@ -1,14 +1,2 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-</div>
-<h2>Trending: </h2>
-<div fxLayout="row">
-  <div *ngFor="let gif of currentGifs" style="margin: 1ch;">
-    <img [src]="gif.media[0].tinygif.url" />
-  </div>
-</div>
-
-<router-outlet></router-outlet>
+  <router-outlet></router-outlet>

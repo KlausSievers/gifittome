@@ -1,0 +1,27 @@
+<div fxLayout="row" fxLayoutGap="20px" fxFlex>
+  <mat-card fxFlex>
+    <div *ngFor="let p of gameService.get().player" [ngClass]="{'myself': p.name === gameService.player.name}">
+      {{p.name}}</div>
+  </mat-card>
+
+  <mat-card *ngIf="!gameService.get().active" fxFlex="100" fxLayoutAlign="center center">
+    <div fxLayout="column">
+      <div>
+        <a href="{{'http://localhost:8090/game/'+gameService.get().id+'/join'}}">Link zum Beitreten</a>
+      </div>
+      <button *ngIf="gameService.isCreator" mat-button color="primary" (click)="startGame()">Spiel starten</button>
+    </div>
+    <div *ngIf="!gameService.isCreator">Warten auf Spielstart...</div>
+  </mat-card>
+
+  <div *ngIf="gameService.get().active" fxFlex="100" fxLayout="column" fxLayoutGap="20px">
+    <mat-card  fxLayoutAlign="center center">
+      <img src="{{gameService.round.gif.media[0].gif.url}}">
+    </mat-card>
+    <div fxLayout="row" fxLayoutGap="20px">
+      <mat-card *ngFor="let card of gameService.player.cards" (click)="playCard(card)">
+        {{card.value}}
+      </mat-card>
+    </div>
+  </div>
+</div>

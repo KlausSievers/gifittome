@@ -1,0 +1,16 @@
+<mat-card fxFlex fxFlexFill fxLayout="column" fxLayoutAlign="space-between center" style="margin: 1em;">
+  <div class="mat-display-4" fxFlex> Gif it to me baby</div>
+
+  <img src="{{currentGif?.media[0].gif.url}}">
+
+  <div fxFlex fxLayout="column" fxLayoutAlign="end center">
+    <button fxFlex mat-raised-button color="primary" (click)="createGame()">Gif me a NEW game</button>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Game-Id</mat-label>
+        <input matInput placeholder="Game-Id">
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="createGame()">Gif me MY game</button>
+    </div>
+  </div>
+</mat-card>

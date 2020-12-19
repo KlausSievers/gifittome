@@ -11,13 +11,29 @@ export class GifService {
   constructor(private http: HttpClient) { }
 
   public trending() {
-    return this.http.get<Gif[]>(this.startUrl+'trending');
+    return this.http.get<Gif[]>(this.startUrl + 'trending');
+  }
+
+  public start() {
+    return this.http.get<Gif[]>(this.startUrl + 'start');
   }
 }
 
 export interface GifResponse {
   next: string,
   results: Gif[]
+}
+
+export interface MediaMap {
+  gif: Media;
+}
+
+
+export interface Media {
+  preview: string,
+  url: string,
+  dims: number[],
+  size: number
 }
 
 export interface Gif {
@@ -29,5 +45,6 @@ export interface Gif {
   title: string,
   itemurl: string,
   hascaption: boolean,
-  url: string
+  url: string,
+  media: MediaMap;
 }
