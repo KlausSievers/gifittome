@@ -1,16 +1,19 @@
-<mat-card fxFlex fxFlexFill fxLayout="column" fxLayoutAlign="space-between center" style="margin: 1em;">
-  <div class="mat-display-4" fxFlex> Gif it to me baby</div>
+<mat-card fxFlex="none" fxFlexFill fxLayout="column" fxLayoutAlign="space-between center" style="margin: 1em;">
+  <div class="mat-display-4" fxFlex style="margin-bottom: 28px;"> Gif it to me</div>
 
-  <img src="{{currentGif?.media[0].gif.url}}">
+  <!--@todo do this with flex -->
+  <div fxFlex id="start-gif-container" fxFlex="no-grow" fxLayout="column" fxLayoutAlign="center center">
+    <img id="start-gif" class="gif" [src]="currentGif?.media[0].gif.url">
+  </div>
 
-  <div fxFlex fxLayout="column" fxLayoutAlign="end center">
-    <button fxFlex mat-raised-button color="primary" (click)="createGame()">Gif me a NEW game</button>
-    <div>
+  <div fxFlex="none" fxLayout="column" fxLayoutAlign="end center" style="margin-top: 2em;">
+    <button mat-raised-button color="primary" (click)="createGame()" style="width: 100%;">Gif me a NEW game</button>
+    <div style=" padding-top: 0.5em;" fxFlex fxLayout="row" fxLayoutAlign="space-between center">
       <mat-form-field appearance="outline">
         <mat-label>Game-Id</mat-label>
-        <input matInput placeholder="Game-Id">
+        <input matInput placeholder="" [(ngModel)]="gameId">
       </mat-form-field>
-      <button mat-raised-button color="primary" (click)="createGame()">Gif me MY game</button>
+      <button mat-raised-button color="primary" (click)="getGame()" style="margin-left: 0.5em;">Gif me MY game</button>
     </div>
   </div>
 </mat-card>

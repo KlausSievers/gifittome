@@ -13,6 +13,7 @@ import { JoinComponent } from './join/join.component';
 import { GameComponent } from './game/game.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 
 @NgModule({
@@ -32,6 +33,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatCardModule,
     BrowserAnimationsModule,
     MatButtonModule,
+    MatInputModule,
     MatFormFieldModule
   ],
   providers: [],

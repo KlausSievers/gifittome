@@ -1,5 +1,6 @@
 export class Card {
   private _value: string = '';
+
   public get value(): string {
     return this._value;
   }

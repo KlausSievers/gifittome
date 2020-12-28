@@ -24,4 +24,12 @@ export class Game {
   public set active(value: boolean) {
     this._active = value;
   }
+
+  private _round: number;
+  public get round(): number {
+    return this._round;
+  }
+  public set round(value: number) {
+    this._round = value;
+  }
 }

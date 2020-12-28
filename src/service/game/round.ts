@@ -1,5 +1,13 @@
 import { Player } from './player';
 
+export enum RoundStatus {
+  CHOOSE_GIF,
+  CHOOSE_CARDS,
+  REVEAL_CARDS,
+  CHOOSE_WINNER,
+  START_NEXT_ROUND
+}
+
 export class Round {
   private _gif;
   public get gif() {
@@ -17,5 +25,20 @@ export class Round {
     this._choosingPlayer = value;
   }
 
+  //@todo round status
+  private _cardPlayed: boolean;
+  public get cardPlayed(): boolean {
+    return this._cardPlayed;
+  }
+  public set cardPlayed(value: boolean) {
+    this._cardPlayed = value;
+  }
 
+  private _status: RoundStatus;
+  public get status(): RoundStatus {
+    return this._status;
+  }
+  public set status(value: RoundStatus) {
+    this._status = value;
+  }
 }

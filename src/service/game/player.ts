@@ -17,7 +17,7 @@ export class Player {
     this._cards = value;
   }
 
-  private won: Array<any> = [];
+  private won: number = 0;
   private socket;
 
   constructor(name, socket) {

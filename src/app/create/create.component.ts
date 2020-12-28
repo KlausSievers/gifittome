@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { GameService } from '../../service/game/game.service';
 import { GifService, Gif } from '../../service/gif/gif.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { interval } from 'rxjs';
+import { timer } from 'rxjs';
 
 @Component({
   selector: 'app-create',
@@ -10,11 +11,10 @@ import { interval } from 'rxjs';
   styleUrls: ['./create.component.scss']
 })
 export class CreateComponent implements OnInit {
-  private gameId: string;
   private startGifs: Gif[];
-  private gifIntervalSubscribtion ;
+  private gifIntervalSubscribtion;
+  gameId: string;
   currentGif: Gif;
-
 
   constructor(
     private gameService: GameService,
@@ -29,10 +29,9 @@ export class CreateComponent implements OnInit {
       startGifSubscribtion.unsubscribe();
       this.startGifs = data;
 
-      const gifInterval = interval(10000);
-
+      const gifInterval = timer(0, 15000);
       this.gifIntervalSubscribtion = gifInterval.subscribe(n =>
-        this.currentGif = this.startGifs[Math.floor(Math.random() * this.startGifs.length)]
+        this.currentGif = this.startGifs[n % this.startGifs.length]
       );
     });
 
@@ -40,11 +39,15 @@ export class CreateComponent implements OnInit {
   }
 
   public createGame() {
-    this.gifIntervalSubscribtion.unsubscribe();
+    if (this.gifIntervalSubscribtion) {
+      this.gifIntervalSubscribtion.unsubscribe();
+    }
     this.gameService.create().subscribe((game) => {
       this.router.navigate(['game', game.id, 'join']);
     });
   }
 
-
+  public getGame() {
+    this.router.navigate(['game', this.gameId, 'join']);
+  }
 }
