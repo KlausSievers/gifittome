@@ -1,0 +1,11 @@
+.card.closed.choosing, .voting .card {
+  cursor: pointer;
+}
+
+.card.selected {
+  border: #e91e63 solid 4px;
+}
+
+.card.winner {
+  background-color: #e91e63;
+}

@@ -1,0 +1,10 @@
+<div class="round-status" fxLayout="column" *ngIf="gameService.get() && gameService.get().round > 0">
+  <div>Round {{gameService.get().round}}</div>
+  <ol class="round-status-list">
+    <li class="round-status-item" [ngClass]="{'active': gameService.isRoundStatus(RoundStatus.CHOOSE_GIF)}">Choose Gif</li>
+    <li class="round-status-item" [ngClass]="{'active': gameService.isRoundStatus(RoundStatus.CHOOSE_CARDS)}">Choose cards</li>
+    <li class="round-status-item" [ngClass]="{'active': gameService.isRoundStatus(RoundStatus.REVEAL_CARDS)}">Reveal cards</li>
+    <li class="round-status-item" [ngClass]="{'active': gameService.isRoundStatus(RoundStatus.CHOOSE_WINNER)}">Choose winner</li>
+    <li class="round-status-item" [ngClass]="{'active': gameService.isRoundStatus(RoundStatus.START_NEXT_ROUND)}">Start next round</li>
+  </ol>
+</div>

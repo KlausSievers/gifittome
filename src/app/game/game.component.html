@@ -1,72 +1,12 @@
 <div fxLayout="row" fxLayoutGap="20px" fxFlex>
   <mat-card fxFlex="20" fxLayout="column" fxLayoutAlign="space-between">
-    <div style="display: grid; grid-template-columns:auto auto">
-      <ng-container *ngFor="let p of gameService.get().player">
-        <div class="player" [ngClass]="{'myself': p.name === gameService.player.name, 'choosing': isChoosingPlayer(p), 'okay': p.okay}">
-          {{p.name}}
-        </div>
-        <div class="player"  [ngClass]="{'myself': p.name === gameService.player.name, 'choosing': isChoosingPlayer(p), 'okay': p.okay}">
-          {{p.won}}
-        </div>
-      </ng-container>
-    </div>
-    <div fxLayout="column" *ngIf="gameService.get() && gameService.get().round > 0">
-      <div>Round {{gameService.get().round}}</div>
-      <div class="round-status" [ngClass]="{'active': isRoundStatus(RoundStatus.CHOOSE_GIF)}">1. Choose Gif</div>
-      <div class="round-status" [ngClass]="{'active': isRoundStatus(RoundStatus.CHOOSE_CARDS)}">2. Choose cards</div>
-      <div class="round-status" [ngClass]="{'active': isRoundStatus(RoundStatus.REVEAL_CARDS)}">3. Reveal cards</div>
-      <div class="round-status" [ngClass]="{'active': isRoundStatus(RoundStatus.CHOOSE_WINNER)}">4. Choose winner</div>
-      <div class="round-status" [ngClass]="{'active': isRoundStatus(RoundStatus.START_NEXT_ROUND)}">5. Start next round</div>
-    </div>
+    <app-game-status></app-game-status>
+    <app-round-status></app-round-status>
   </mat-card>
-
-  <mat-card *ngIf="!gameService.get().active" fxFlex="100" fxLayout="column" fxLayoutAlign="center center">
-    <div>
-      <a href="{{'https://www.gif-it-to-me.com/game/'+gameService.get().id+'/join'}}" style="color: white; padding-bottom: 1em;">Link zum Beitreten</a>
-    </div>
-    <div>
-     <div style="color: white; padding-bottom: 1em;">ID: {{gameService.get().id}}</div>
-    </div>
-    <button *ngIf="gameService.isCreator" mat-raised-button color="primary" (click)="startGame()">Spiel starten</button>
-    <div *ngIf="!gameService.isCreator">Warten auf Spielstart...</div>
-  </mat-card>
+  <app-wait-game-start fxFlex="100" *ngIf="!gameService.get().active"></app-wait-game-start>
 
   <div *ngIf="gameService.get().active" fxFlex="100" fxLayout="column" fxLayoutGap="1em">
-    <mat-card fxFlex fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="1em">
-      <img fxFlex="80" src="{{gameService.round.gif.media[0].gif.url}}" class="gif">
-      <div fxFlex="20" fxLayout="row" fxLayoutAlign="center center" *ngIf="isRoundStatus(RoundStatus.CHOOSE_WINNER)">
-        <button fxFlex mat-raised-button color="primary" (click)="chooseWinner()" *ngIf="isCardSelected()">Als Gewinner wählen</button>
-        <div class="mat-display-2" *ngIf="!isCardSelected()" style="margin-bottom: 0;color: #e91e63;">Gewinner auswählen</div>
-      </div>
-      <div fxFlex="20" fxLayout="column" fxLayoutAlign="center center" *ngIf="gameService.getWinnerCard()">
-        <div class="mat-display-2" style="margin-bottom: 0;color: #e91e63;">{{gameService.getWinnerCard().player}} is the winner</div>
-      </div>
-      <div fxFlex="20" fxLayout="row" fxLayoutAlign="center center" *ngIf="isRoundStatus(RoundStatus.START_NEXT_ROUND) && !isOkay()">
-        <button fxFlex mat-raised-button color="primary" (click)="nextRound()">Next round</button>
-      </div>
-    </mat-card>
-    <div fxFlex="20" fxLayout="row" fxLayoutGap="1em" *ngIf="gameService.getRound().status < RoundStatus.REVEAL_CARDS">
-      <!--mat-card *ngFor="let card of gameService.player.cards" (click)="playCard(card)">
-        {{card.value}}
-      </mat-card-->
-      <mat-card *ngIf="!isChoosingPlayer(gameService.player) && !gameService.getRound().cardPlayed">
-        <mat-form-field appearance="outline">
-          <mat-label>Gif me</mat-label>
-          <input matInput placeholder="" [(ngModel)]="sentence">
-        </mat-form-field>
-        <button mat-raised-button color="primary" (click)="playSentence()" style="margin-left: 0.5em;">Go</button>
-      </mat-card>
-      <mat-card *ngIf="(isChoosingPlayer(gameService.player) || gameService.getRound().cardPlayed)">
-        Warten auf Gifer ...
-      </mat-card>
-    </div>
-    <div fxFlex="20" fxLayout="row" fxLayoutGap="1em" *ngIf="gameService.getRound().status >= RoundStatus.REVEAL_CARDS" [ngClass]="{'voting': isRoundStatus(RoundStatus.CHOOSE_WINNER)}">
-      <mat-card class="card" fxFlex fxLayoutGap="1em" *ngFor="let i of getPlayerIndezes()" [ngClass]="{'closed': !isOpen(i), 'choosing': isChoosingPlayer(gameService.player), 'selected': selectedCardIdx=== i, 'winner': isWinner(i)}" (click)="cardClicked(i)">
-        <div *ngIf="isOpen(i)" fxLayout="column">
-          <div>{{gameService.getCards()[i]._value || gameService.getCards()[i].value}}</div>
-          <div *ngIf="gameService.getCards()[i].player">by {{gameService.getCards()[i].player}}</div>
-        </div>
-      </mat-card>
-    </div>
+    <app-gif-board fxFlex="80"></app-gif-board>
+    <app-card-list fxFlex="20"></app-card-list>
   </div>
 </div>

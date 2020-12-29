@@ -15,13 +15,23 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { RoundStatusComponent } from './round-status/round-status.component';
+import { GameStatusComponent } from './game-status/game-status.component';
+import { GifBoardComponent } from './gif-board/gif-board.component';
+import { CardListComponent } from './card-list/card-list.component';
+import { WaitGameStartComponent } from './wait-game-start/wait-game-start.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CreateComponent,
     JoinComponent,
-    GameComponent
+    GameComponent,
+    RoundStatusComponent,
+    GameStatusComponent,
+    GifBoardComponent,
+    CardListComponent,
+    WaitGameStartComponent
   ],
   imports: [
     BrowserModule,

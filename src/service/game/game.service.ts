@@ -7,6 +7,7 @@ import { Game } from './game';
 import { Player } from './player';
 import { Round, RoundStatus } from './round';
 import { Card } from './card';
+import { CardSelectionService } from '../card-selection/card-selection.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,12 +19,15 @@ export class GameService {
   private player: Player;
   private round: Round = null;
   private openCards: Card[];
-  private winnerCard:Card;
+  private winnerCard: Card;
+
 
   isCreator = false;
 
-  constructor(private http: HttpClient,
-    private snackBar: MatSnackBar) {
+  constructor(
+    private http: HttpClient,
+    private snackBar: MatSnackBar,
+    private cardSelectionService: CardSelectionService) {
   }
 
   public get(): Game {
@@ -68,7 +72,7 @@ export class GameService {
         observer.next(this.socket);
         observer.complete();
       } else {
-        this.socket = io('http://localhost:8091');
+        this.socket = io('http://localhost:8083');
         this.socket.on('connect', () => {
           observer.next(this.socket);
           observer.complete();
@@ -76,7 +80,7 @@ export class GameService {
 
         this.socket.on('player-joined', (response) => {
           this.game = response.game;
-          console.log('Round: '+ this.game.round);
+          console.log('Round: ' + this.game.round);
           this.snackBar.open(response.newPlayer + ' has joined the game', '', {
             duration: 2000,
           });
@@ -85,7 +89,7 @@ export class GameService {
 
         this.socket.on('game-update', (response) => {
           this.game = response;
-          console.log('Round: '+ this.game.round);
+          console.log('Round: ' + this.game.round);
           console.log('game-update', response);
         });
 
@@ -111,9 +115,9 @@ export class GameService {
         });
 
         this.socket.on('card-revealed', (card) => {
-          let c : Card = new Card();
+          let c: Card = new Card();
           c.value = card._value;
-          this.openCards[card.index] =  c;
+          this.openCards[card.index] = c;
         });
 
         this.socket.on('start-voting', () => {
@@ -122,7 +126,7 @@ export class GameService {
 
         this.socket.on('winner-selected', (response) => {
           this.game = response.game;
-          console.log('Round: '+ this.game.round);
+          console.log('Round: ' + this.game.round);
           this.openCards = response.cards;
           this.winnerCard = response.winner;
           this.round.status = RoundStatus.START_NEXT_ROUND;
@@ -147,7 +151,7 @@ export class GameService {
   }
 
   public start() {
-    console.log('Round: '+ this.game.round);
+    console.log('Round: ' + this.game.round);
     return this.emit('/game/start', {
       gameId: this.game.id
     }).subscribe(() => {
@@ -167,8 +171,8 @@ export class GameService {
     this.emit('card-revealed', { index: index }).subscribe();
   }
 
-  public chooseWinner(index: number) {
-    this.emit('winner-selected', { index: index }).subscribe();
+  public chooseWinner() {
+    this.emit('winner-selected', { index: this.cardSelectionService.getSelectedCardIdx() }).subscribe();
   }
 
   public nextRoundVote() {
@@ -186,7 +190,7 @@ export class GameService {
             observer.error(response);
           } else {
             this.game = response.game;
-            console.log('Round: '+ this.game.round);
+            console.log('Round: ' + this.game.round);
             observer.next(response);
             observer.complete();
           }
@@ -197,6 +201,24 @@ export class GameService {
 
   public leave() {
 
+  }
+
+  //--------------------
+
+  public isRoundStatus(status: RoundStatus): boolean {
+    if (this.getRound()) {
+      return this.getRound().status === status;
+    } else {
+      return false;
+    }
+  }
+
+  public isChoosingPlayer(player: Player): boolean {
+    if (this.getRound()) {
+      return this.getRound().choosingPlayer.name === player.name;
+    } else {
+      return false;
+    }
   }
 }
 

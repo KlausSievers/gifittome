@@ -1,0 +1,10 @@
+<div class="game-status" style="display: grid; grid-template-columns:auto auto">
+  <ng-container *ngFor="let p of gameService.get().player">
+    <div class="player" [ngClass]="{'myself': p.name === gameService.player.name, 'choosing': gameService.isChoosingPlayer(p), 'okay': p.okay}">
+      {{p.name}}
+    </div>
+    <div class="player"  [ngClass]="{'myself': p.name === gameService.player.name, 'choosing': gameService.isChoosingPlayer(p), 'okay': p.okay}">
+      {{p.won}}
+    </div>
+  </ng-container>
+</div>

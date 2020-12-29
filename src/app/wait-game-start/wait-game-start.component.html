@@ -1,0 +1,10 @@
+<mat-card fxFlex="100" fxLayout="column" fxLayoutAlign="center center">
+  <div>
+    <a href="{{'/game/'+gameService.get().id+'/join'}}" style="color: white; padding-bottom: 1em;">Link zum Beitreten</a>
+  </div>
+  <div>
+    <div style="color: white; padding-bottom: 1em;">ID: {{gameService.get().id}}</div>
+  </div>
+  <button *ngIf="gameService.isCreator" mat-raised-button color="primary" (click)="startGame()">Spiel starten</button>
+  <div *ngIf="!gameService.isCreator">Warten auf Spielstart...</div>
+</mat-card>

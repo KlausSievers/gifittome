@@ -2,32 +2,3 @@
   height: 100%;
   padding: 1em;
 }
-
-
-.player.myself {
-  text-decoration: underline;
-}
-
-.player.choosing {
-  color: #e91e63; //@todo variable pink 500
-}
-
-.player.okay {
-  color: #76FF03 //light green A400
-}
-
-.card.closed.choosing, .voting .card {
-  cursor: pointer;
-}
-
-.card.selected {
-  border: #e91e63 solid 4px;
-}
-
-.card.winner {
-  background-color: #e91e63;
-}
-
-.round-status.active {
-  color: #e91e63;
-}
