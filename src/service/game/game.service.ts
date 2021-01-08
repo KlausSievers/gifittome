@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, JsonpClientBackend } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import io from 'socket.io-client';
 import { Observable } from 'rxjs';
@@ -8,6 +8,7 @@ import { Player } from './player';
 import { Round, RoundStatus } from './round';
 import { Card } from './card';
 import { CardSelectionService } from '../card-selection/card-selection.service';
+import { environment } from './../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -72,7 +73,7 @@ export class GameService {
         observer.next(this.socket);
         observer.complete();
       } else {
-        this.socket = io('http://localhost:8083');
+        this.socket = io(environment.websocket);
         this.socket.on('connect', () => {
           observer.next(this.socket);
           observer.complete();
@@ -102,7 +103,7 @@ export class GameService {
         });
 
         this.socket.on('reveal-cards', () => {
-          this.snackBar.open(this.round.choosingPlayer.name + ' Karten aufdecken', '', {
+          this.snackBar.open(this.round.choosingPlayer.name + ' reveal cards', '', {
             duration: 2000,
           });
 
@@ -155,7 +156,7 @@ export class GameService {
     return this.emit('/game/start', {
       gameId: this.game.id
     }).subscribe(() => {
-      this.snackBar.open('Mögen die Spiele beginnen', '', {
+      this.snackBar.open('Let the games begin', '', {
         duration: 2000,
       });
     });

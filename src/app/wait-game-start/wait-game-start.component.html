@@ -1,10 +1,17 @@
 <mat-card fxFlex="100" fxLayout="column" fxLayoutAlign="center center">
   <div>
-    <a href="{{'/game/'+gameService.get().id+'/join'}}" style="color: white; padding-bottom: 1em;">Link zum Beitreten</a>
+    <mat-form-field appearance="outline">
+      <mat-label>Link</mat-label>
+      <input id="link-input" matInput placeholder="" [value]="environment.host+'/game/'+gameService.get().id+'/join'">
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="copyLink()" style="margin-left: 0.5em;">Copy</button>
   </div>
   <div>
     <div style="color: white; padding-bottom: 1em;">ID: {{gameService.get().id}}</div>
   </div>
-  <button *ngIf="gameService.isCreator" mat-raised-button color="primary" (click)="startGame()">Spiel starten</button>
-  <div *ngIf="!gameService.isCreator">Warten auf Spielstart...</div>
+  <div *ngIf="gameService.isCreator">
+    <button mat-raised-button color="primary" (click)="startGame()" [disabled]="   gameService.get().player.length < 3">Start Game</button>
+    <div style="color: #e91e63; font-size: x-small;">min. 3 Gifer</div>
+  </div>
+  <div *ngIf="!gameService.isCreator">Wating for game start...</div>
 </mat-card>

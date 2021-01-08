@@ -4,7 +4,17 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Bangers, sans-serif;}
 
-.mat-button, .mat-raised-button, .mat-icon-button, .mat-stroked-button, .mat-flat-button, .mat-fab, .mat-mini-fab, .mat-form-field-label, a, div {
+.mat-button,
+.mat-raised-button,
+.mat-icon-button,
+.mat-stroked-button,
+.mat-flat-button,
+.mat-fab,
+.mat-mini-fab,
+.mat-form-field-label,
+.mat-input-element,
+a,
+div {
   letter-spacing: 0.1em;
 }
 
@@ -13,3 +23,26 @@ body { margin: 0; font-family: Bangers, sans-serif;}
   border: white solid 2px;
   border-radius: 4px;
 }
+
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 6px;
+  height: 6px;
+  padding-left: 10px;;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 6px;
+  background-color: rgb(33,150,243); //@todo varialbe aus palette hole
+  box-shadow: 0 0 1px rgba(255, 255, 255, .4);
+  padding-left: 10px;;
+}
+
+.card-list .mat-form-field-wrapper,.card-list  .mat-form-field-flex {
+  height: 100%;
+}
+
+.card-list .mat-form-field-infix {
+  height: 70%;
+}
+

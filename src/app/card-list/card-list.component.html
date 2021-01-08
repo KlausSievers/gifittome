@@ -2,15 +2,15 @@
   <!--mat-card *ngFor="let card of gameService.player.cards" (click)="playCard(card)">
       {{card.value}}
     </mat-card-->
-  <mat-card *ngIf="!gameService.isChoosingPlayer(gameService.player) && !gameService.getRound().cardPlayed">
-    <mat-form-field appearance="outline">
+  <mat-card *ngIf="!gameService.isChoosingPlayer(gameService.player) && !gameService.getRound().cardPlayed"  fxLayout="row" fxLayoutAlign="start end">
+    <mat-form-field appearance="outline" style="height: 100%;">
       <mat-label>Gif me</mat-label>
-      <input matInput placeholder="" [(ngModel)]="sentence">
+      <textarea matInput placeholder="" [(ngModel)]="sentence"  style="resize: none; height: 100%;"></textarea>
     </mat-form-field>
-    <button mat-raised-button color="primary" (click)="playSentence()" style="margin-left: 0.5em;">Go</button>
+    <button mat-raised-button color="primary" (click)="playSentence()" style="margin-left: 0.5em;" [disabled]="!sentence">Go</button>
   </mat-card>
   <mat-card *ngIf="(gameService.isChoosingPlayer(gameService.player) || gameService.getRound().cardPlayed)">
-    Warten auf Gifer ...
+    Waiting for other Gifer ...
   </mat-card>
 </div>
 <div fxFlex="100" fxLayout="row" fxLayoutGap="1em" *ngIf="gameService.getRound().status >= RoundStatus.REVEAL_CARDS" [ngClass]="{'voting': gameService.isRoundStatus(RoundStatus.CHOOSE_WINNER)}">
