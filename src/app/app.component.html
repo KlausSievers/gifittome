@@ -1,2 +1,14 @@
 <!--The content below is only a placeholder and can be replaced.-->
-  <router-outlet></router-outlet>
+<div style="max-width: 100vw; max-height: 100vh;" fxFlex="100" fxLayout="column">
+  <div style="max-height: calc(100% - 21px); height: calc(100% - 21px);">
+    <router-outlet></router-outlet>
+  </div>
+  <div style="padding-left: 1em;" fxLayout="row">
+    <div>
+      <a routerLink="/legal" style="font-size: xx-small; text-decoration: none; color: black;">Legal notice</a>
+    </div>
+    <div style="padding-left: 1em;">
+      <a routerLink="/privacy" style="font-size: xx-small; text-decoration: none; color: black;">Data privacy</a>
+    </div>
+  </div>
+</div>

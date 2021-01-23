@@ -14,12 +14,15 @@ import { GameComponent } from './game/game.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import {MatDividerModule} from '@angular/material/divider';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { RoundStatusComponent } from './round-status/round-status.component';
 import { GameStatusComponent } from './game-status/game-status.component';
 import { GifBoardComponent } from './gif-board/gif-board.component';
 import { CardListComponent } from './card-list/card-list.component';
 import { WaitGameStartComponent } from './wait-game-start/wait-game-start.component';
+import { LegalNoticeComponent } from './legal-notice/legal-notice.component';
+import { DataPrivacyComponent } from './data-privacy/data-privacy.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,9 @@ import { WaitGameStartComponent } from './wait-game-start/wait-game-start.compon
     GameStatusComponent,
     GifBoardComponent,
     CardListComponent,
-    WaitGameStartComponent
+    WaitGameStartComponent,
+    LegalNoticeComponent,
+    DataPrivacyComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +49,8 @@ import { WaitGameStartComponent } from './wait-game-start/wait-game-start.compon
     BrowserAnimationsModule,
     MatButtonModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatDividerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
