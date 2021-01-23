@@ -6,6 +6,10 @@ $custom-typography: mat-typography-config(
   $display-4: mat-typography-level(112px, 112px, 300, $letter-spacing: 0.01em),
   $display-3: mat-typography-level(56px, 56px, 400, $letter-spacing: 0.01em),
   $display-2: mat-typography-level(45px, 48px, 400, $letter-spacing: 0.01em),
+  $headline: mat-typography-level(24px, 32px, 400, $letter-spacing: 0.01em),
+  $title: mat-typography-level(20px, 32px, 500, $letter-spacing: 0.01em),
+  $subheading-2: mat-typography-level(16px, 28px, 400, $letter-spacing: 0.03em),
+  $subheading-1: mat-typography-level(15px, 24px, 400, $letter-spacing: 0.03em)
 );
 
 @include angular-material-typography($custom-typography);
