@@ -1,5 +1,32 @@
 <mat-card fxFlex="100" fxLayout="column" fxLayoutAlign="center center">
-  <div>
+  <div class="gif" style="max-width: 500px;">
+    <div>The Rules: </div>
+    <div style="font-family: 'Roboto'; letter-spacing: normal;">
+      <ol id="rule-list">
+        <li>
+          You are the <span style="text-decoration: underline;font-family: 'Bangers'; letter-spacing: 0.08em;">underlined player</span>
+        </li>
+        <li>
+          The red player is the <span style="color: #e91e63;font-family: 'Bangers'; letter-spacing: 0.08em;">Gif Master</span> . This will change every round
+        </li>
+        <li>
+          In each round you will see a different text. All player except of the Gif Master enter a as funny as possible text
+          in their card.
+          <span style="color: #76FF03;font-family: 'Bangers'; letter-spacing: 0.08em;">Player</span> who committed their card will appear green.
+        </li>
+        <li>
+          When all Gifer has entered their masterpieces the Gif Master reveal one card after each other and may read them loudly to share the funniness
+        </li>
+        <li>
+          The Gif Master crowns the winner of the round. The winner gets one point
+        </li>
+        <li>
+          Each Gifer clicks Next Round when ready. <span style="color: #76FF03;font-family: 'Bangers'; letter-spacing: 0.08em;">Ready player</span> appear green again.
+        </li>
+      </ol>
+    </div>
+  </div>
+  <div style="margin-top: 2em;">
     <mat-form-field appearance="outline">
       <mat-label>Link</mat-label>
       <input id="link-input" matInput placeholder="" [value]="environment.host+'/game/'+gameService.get().id+'/join'">
