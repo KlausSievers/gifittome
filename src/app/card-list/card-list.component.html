@@ -7,16 +7,16 @@
       <mat-label>Gif me</mat-label>
       <textarea matInput placeholder="" [(ngModel)]="sentence"  style="resize: none; height: 100%;"></textarea>
     </mat-form-field>
-    <button mat-raised-button color="primary" (click)="playSentence()" style="margin-left: 0.5em;" [disabled]="!sentence">Go</button>
+    <button mat-raised-button color="primary" (click)="playSentence()" style="margin-left: 0.5em;" [disabled]="!sentence || !sentence.trim()">Go</button>
   </mat-card>
   <mat-card *ngIf="(gameService.isChoosingPlayer(gameService.player) || gameService.getRound().cardPlayed)">
     Waiting for other Gifer ...
   </mat-card>
 </div>
-<div fxFlex="100" fxLayout="row" fxLayoutGap="1em" *ngIf="gameService.getRound().status >= RoundStatus.REVEAL_CARDS" [ngClass]="{'voting': gameService.isRoundStatus(RoundStatus.CHOOSE_WINNER)}">
+<div fxFlex="100" fxLayout="row" fxLayoutGap="1em" style="overflow-x: scroll;" *ngIf="gameService.getRound().status >= RoundStatus.REVEAL_CARDS" [ngClass]="{'voting': gameService.isRoundStatus(RoundStatus.CHOOSE_WINNER)}">
   <mat-card class="card" fxFlex fxLayoutGap="1em" *ngFor="let i of getPlayerIndezes()" [ngClass]="{'closed': !isOpen(i), 'choosing': gameService.isChoosingPlayer(gameService.player), 'selected': cardSelectionService.getSelectedCardIdx() === i, 'winner': isWinner(i)}" (click)="cardClicked(i)">
     <div *ngIf="isOpen(i)" fxLayout="column">
-      <div>{{gameService.getCards()[i]._value || gameService.getCards()[i].value}}</div>
+      <div class="value">{{gameService.getCards()[i]._value || gameService.getCards()[i].value}}</div>
       <div *ngIf="gameService.getCards()[i].player">by {{gameService.getCards()[i].player}}</div>
     </div>
   </mat-card>

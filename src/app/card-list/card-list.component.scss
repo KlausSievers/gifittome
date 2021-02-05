@@ -13,4 +13,11 @@
 .card {
   white-space: pre-wrap;
   overflow-y: auto;
+  min-width: 200px;
+}
+
+.card .value {
+  font-family: 'Roboto';
+  letter-spacing: normal;
+  word-wrap: break-word;
 }

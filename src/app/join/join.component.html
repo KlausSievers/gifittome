@@ -3,7 +3,12 @@
 
   <!--@todo do this with flex -->
   <div fxFlex id="start-gif-container" fxFlex="no-grow" fxLayout="column" fxLayoutAlign="center center">
-    <img id="start-gif" alt="start-gif" class="gif"  [src]="currentGif?.media[0].gif.url">
+    <div class="gif">
+      <img id="start-gif" alt="start-gif" [src]="currentGif?.media[0].gif.url">
+      <div layout="row" fxLayoutAlign="end">
+        <img alt="via-tenor" style="width: 10%; max-width: 100px;" src="../../assets/tenor/via_tenor_logo_white.png">
+      </div>
+    </div>
   </div>
 
   <div fxFlex="none" fxLayout="column" fxLayoutAlign="end center" style="margin-top: 2em;">

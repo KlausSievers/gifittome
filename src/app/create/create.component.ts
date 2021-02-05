@@ -25,9 +25,12 @@ export class CreateComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    //@todo same as in join
     const startGifSubscribtion = this.gifService.start().subscribe((data: Gif[]) => {
       startGifSubscribtion.unsubscribe();
       this.startGifs = data;
+
+      this.shuffle(this.startGifs);
 
       const gifInterval = timer(0, 15000);
       this.gifIntervalSubscribtion = gifInterval.subscribe(n =>
@@ -50,4 +53,15 @@ export class CreateComponent implements OnInit {
   public getGame() {
     this.router.navigate(['game', this.gameId, 'join']);
   }
+
+  private shuffle(a) {
+    var j, x, i;
+    for (i = a.length - 1; i > 0; i--) {
+      j = Math.floor(Math.random() * (i + 1));
+      x = a[i];
+      a[i] = a[j];
+      a[j] = x;
+    }
+  }
+
 }

@@ -34,6 +34,8 @@ export class JoinComponent implements OnInit {
       startGifSubscribtion.unsubscribe();
       this.startGifs = data;
 
+      this.shuffle(this.startGifs);
+
       const gifInterval = timer(0, 15000);
       this.gifIntervalSubscribtion = gifInterval.subscribe(n =>
         this.currentGif = this.startGifs[n % this.startGifs.length]
@@ -49,6 +51,16 @@ export class JoinComponent implements OnInit {
     this.gameSevice.join(this.gameId, this.playerName).subscribe((game) => {
       this.router.navigate(['game', this.gameId, 'play']);
     });
+  }
+
+  private shuffle(a) {
+    var j, x, i;
+    for (i = a.length - 1; i > 0; i--) {
+      j = Math.floor(Math.random() * (i + 1));
+      x = a[i];
+      a[i] = a[j];
+      a[j] = x;
+    }
   }
 
 }
