@@ -1,0 +1,20 @@
+<div class="game-status" style="display: grid; grid-template-columns:auto auto">
+  <ng-container *ngFor="let p of gameService.get().player">
+    <div class="player" (click)="selectPlayer(p)" [ngClass]="{'myself': isMyself(p), 'choosing': gameService.isChoosingPlayer(p), 'okay': p.okay, 'clickable': gameService.isHost() || isMyself(p)}">
+      {{p.name}}
+    </div>
+    <div class="player" [ngClass]="{'myself': isMyself(p), 'choosing': gameService.isChoosingPlayer(p), 'okay': p.okay}">
+      {{p.won}}
+    </div>
+  </ng-container>
+  <mat-menu #playerMenu="matMenu" [matMenuTriggerFor]="playerMenu" [matMenuTriggerData]="menuData">
+    <ng-template matMenuContent let-player="player">
+      <button *ngIf="!isMyself(player)" mat-raised-button color="primary" style="width: 100%;" (click)="kickPlayer(player)">
+        <span>Kick</span>
+      </button>
+      <button *ngIf="isMyself(player)"  mat-raised-button color="primary" style="width: 100%;" (click)="leaveGame()">
+        <span>Leave</span>
+      </button>
+    </ng-template>
+  </mat-menu>
+</div>

@@ -1,0 +1,20 @@
+{
+  "name": "gifittome",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start-dev": "node ./app",
+    "start-prod": "NODE_ENV=production node ./app"
+  },
+  "dependencies": {
+    "axios": "~0.19.2",
+    "compression": "^1.7.4",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "helmet": "^4.3.1",
+    "morgan": "~1.9.1",
+    "mysql": "^2.18.1",
+    "socket.io": "2.3.0"
+  }
+}
