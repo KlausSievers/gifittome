@@ -268,9 +268,9 @@ Game.prototype.resetPlayerStatus = function () {
 };
 
 Game.prototype.kick = function (player, reply) {
-  let msg = player.name + 'was kicked by ' + this.host.name;
+  let msg = player.name + ' was kicked by ' + this.host.name+'. ';
   msg += this.removePlayer(player);
-  replySuccess(reply, game);
+  replySuccess(reply, this);
   this.sendGameUpdate(msg);
 };
 
@@ -284,8 +284,14 @@ Game.prototype.leaveGame = function (player, reply) {
 
 Game.prototype.removePlayer = function(player) {
   this.player[player.name].socket.removeAllListeners();
+  this.player[player.name].socket.leave(this.id);
+
   delete this.player[player.name];
-  let idx = this.playerOrder.findIndex((p) => p.id === player.id);
+
+  let wasChoosingPlayer = this.playerOrder[this.choosingPlayerIdx].name === player.name;
+  let wasHost = this.host.name === player.name;
+
+  let idx = this.playerOrder.findIndex((p) => p.name === player.name);
   if (idx > -1) {
     this.playerOrder.splice(idx, 1);
   }
@@ -294,13 +300,13 @@ Game.prototype.removePlayer = function(player) {
   if (this.playerOrder.length <= 2) {
     //@todo Spiel beenden
   } else {
-    if (this.playerOrder[this.choosingPlayerIdx].id === player.id) {
+    if (wasChoosingPlayer) {
       //@todo hier wird noch Spieler uebersprungen, dadurch, dass der choosingPlayerIdx erhoeht wird
       this.startRound();
       msg +=  player.name + ' was the choosing player. We start a new round. ';
     }
 
-    if(this.host.id === player.id) {
+    if(wasHost) {
       this.host = this.playerOrder[0];
       this.host.makeHost();
       msg +=  player.name + ' was the host. Congratulation to '+this.host.name+" on the promotion";
@@ -475,7 +481,7 @@ Player.prototype.getPlayerToSend = function () {
 Player.prototype.makeHost = function() {
   let self = this;
   this.socket.on('game/kick', (msg, reply) => {
-    self.game.kick(self, reply);
+    self.game.kick(msg, reply);
   });
 };
 

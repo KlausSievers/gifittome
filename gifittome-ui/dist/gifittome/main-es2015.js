@@ -609,7 +609,9 @@ class CreateComponent {
         });
     }
     getGame() {
-        this.router.navigate(['game', this.gameId, 'join']);
+        if (this.gameId) {
+            this.router.navigate(['game', this.gameId, 'join']);
+        }
     }
     shuffle(a) {
         var j, x, i;
@@ -622,7 +624,7 @@ class CreateComponent {
     }
 }
 CreateComponent.ɵfac = function CreateComponent_Factory(t) { return new (t || CreateComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_service_game_game_service__WEBPACK_IMPORTED_MODULE_1__["GameService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_service_gif_gif_service__WEBPACK_IMPORTED_MODULE_2__["GifService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"])); };
-CreateComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: CreateComponent, selectors: [["app-create"]], decls: 18, vars: 3, consts: [["fxFlex", "none", "fxFlexFill", "", "fxLayout", "column", "fxLayoutAlign", "space-between center", 2, "margin", "1em"], ["fxFlex", "", 1, "mat-display-4", 2, "margin-bottom", "28px"], ["fxFlex", "", "id", "start-gif-container", "fxFlex", "no-grow", "fxLayout", "column", "fxLayoutAlign", "center center"], [1, "gif"], ["id", "start-gif", "alt", "start-gif", 3, "src"], ["layout", "row", "fxLayoutAlign", "end"], ["alt", "via-tenor", "src", "../../assets/tenor/via_tenor_logo_white.png", 2, "width", "10%", "max-width", "100px"], ["fxFlex", "none", "fxLayout", "column", "fxLayoutAlign", "end center", 2, "margin-top", "2em"], ["mat-raised-button", "", "color", "primary", 2, "width", "100%", 3, "click"], ["fxFlex", "", "fxLayout", "row", "fxLayoutAlign", "space-between center", 2, "padding-top", "0.5em"], ["appearance", "outline"], ["matInput", "", "placeholder", "", 3, "ngModel", "ngModelChange"], ["mat-raised-button", "", "color", "primary", 2, "margin-left", "0.5em", 3, "disabled", "click"]], template: function CreateComponent_Template(rf, ctx) { if (rf & 1) {
+CreateComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: CreateComponent, selectors: [["app-create"]], decls: 18, vars: 3, consts: [["fxFlex", "none", "fxFlexFill", "", "fxLayout", "column", "fxLayoutAlign", "space-between center", 2, "margin", "1em"], ["fxFlex", "", 1, "mat-display-4", 2, "margin-bottom", "28px"], ["fxFlex", "", "id", "start-gif-container", "fxFlex", "no-grow", "fxLayout", "column", "fxLayoutAlign", "center center"], [1, "gif"], ["id", "start-gif", "alt", "start-gif", 3, "src"], ["layout", "row", "fxLayoutAlign", "end"], ["alt", "via-tenor", "src", "../../assets/tenor/via_tenor_logo_white.png", 2, "width", "10%", "max-width", "100px"], ["fxFlex", "none", "fxLayout", "column", "fxLayoutAlign", "end center", 2, "margin-top", "2em"], ["mat-raised-button", "", "color", "primary", 2, "width", "100%", 3, "click"], ["fxFlex", "", "fxLayout", "row", "fxLayoutAlign", "space-between center", 2, "padding-top", "0.5em"], ["appearance", "outline"], ["matInput", "", "placeholder", "", 3, "ngModel", "ngModelChange", "keyup.enter"], ["mat-raised-button", "", "color", "primary", 2, "margin-left", "0.5em", 3, "disabled", "click"]], template: function CreateComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "mat-card", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2, "Gif it to me");
@@ -646,7 +648,7 @@ CreateComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineCo
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](14, "Game-Id");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](15, "input", 11);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function CreateComponent_Template_input_ngModelChange_15_listener($event) { return ctx.gameId = $event; });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function CreateComponent_Template_input_ngModelChange_15_listener($event) { return ctx.gameId = $event; })("keyup.enter", function CreateComponent_Template_input_keyup_enter_15_listener() { return ctx.getGame(); });
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](16, "button", 12);
@@ -1026,25 +1028,12 @@ class GameStatusComponent {
     constructor(dialog, gameService) {
         this.dialog = dialog;
         this.gameService = gameService;
-        // @ViewChild(MatMenuTrigger) playerMenu: MatMenuTrigger;
-        this.menuData = {
-            player: null
-        };
-        this.menuName = '';
     }
     ngOnInit() {
     }
     isMyself(player) {
-        //@todo vor game start -> cannot read property name of undefined
         return player.name === this.gameService.getPlayer().name;
     }
-    // public selectPlayer(player: Player) {
-    //   if (this.gameService.isHost() || this.isMyself(player)) {
-    //     this.menuData.player = player;
-    //     this.menuName = 'playerMenu';
-    //     ((this.playerMenu.openMenu();
-    //   }
-    // }
     kickPlayer(player) {
         const message = 'Are you sure you want to kick ' + player.name + ' ?';
         const dialogData = new _confirm_dialog_confirm_dialog_component__WEBPACK_IMPORTED_MODULE_3__["ConfirmDialogModel"]("Confirm Action", message);
@@ -1239,7 +1228,7 @@ class JoinComponent {
     }
 }
 JoinComponent.ɵfac = function JoinComponent_Factory(t) { return new (t || JoinComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_service_game_game_service__WEBPACK_IMPORTED_MODULE_3__["GameService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_service_gif_gif_service__WEBPACK_IMPORTED_MODULE_2__["GifService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"])); };
-JoinComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: JoinComponent, selectors: [["app-join"]], decls: 16, vars: 3, consts: [["fxFlex", "none", "fxFlexFill", "", "fxLayout", "column", "fxLayoutAlign", "space-between center", 2, "margin", "1em"], ["fxFlex", "", 1, "mat-display-4", 2, "margin-bottom", "28px"], ["fxFlex", "", "id", "start-gif-container", "fxFlex", "no-grow", "fxLayout", "column", "fxLayoutAlign", "center center"], ["fxLayoutAlign", "center center", 1, "gif"], ["id", "start-gif", "alt", "start-gif", 3, "src"], ["layout", "row", "fxLayoutAlign", "end"], ["alt", "via-tenor", "src", "../../assets/tenor/via_tenor_logo_white.png", 2, "width", "10%", "max-width", "100px"], ["fxFlex", "none", "fxLayout", "column", "fxLayoutAlign", "end center", 2, "margin-top", "2em"], ["fxFlex", "", "fxLayout", "row", "fxLayoutAlign", "space-between center", 2, "padding-top", "0.5em"], ["appearance", "outline"], ["matInput", "", "placeholder", "", 3, "ngModel", "ngModelChange", "keyup.enter"], ["mat-raised-button", "", "color", "primary", 2, "margin-left", "0.5em", 3, "disabled", "click"]], template: function JoinComponent_Template(rf, ctx) { if (rf & 1) {
+JoinComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: JoinComponent, selectors: [["app-join"]], decls: 16, vars: 3, consts: [["fxFlex", "none", "fxFlexFill", "", "fxLayout", "column", "fxLayoutAlign", "space-between center", 2, "margin", "1em"], ["fxFlex", "", 1, "mat-display-4", 2, "margin-bottom", "28px"], ["fxFlex", "", "id", "start-gif-container", "fxFlex", "no-grow", "fxLayout", "column", "fxLayoutAlign", "center center"], [1, "gif"], ["id", "start-gif", "alt", "start-gif", 3, "src"], ["layout", "row", "fxLayoutAlign", "end"], ["alt", "via-tenor", "src", "../../assets/tenor/via_tenor_logo_white.png", 2, "width", "10%", "max-width", "100px"], ["fxFlex", "none", "fxLayout", "column", "fxLayoutAlign", "end center", 2, "margin-top", "2em"], ["fxFlex", "", "fxLayout", "row", "fxLayoutAlign", "space-between center", 2, "padding-top", "0.5em"], ["appearance", "outline"], ["matInput", "", "placeholder", "", 3, "ngModel", "ngModelChange", "keyup.enter"], ["mat-raised-button", "", "color", "primary", 2, "margin-left", "0.5em", 3, "disabled", "click"]], template: function JoinComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "mat-card", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2, " Gif it to me");
@@ -1533,7 +1522,7 @@ class GifBoardComponent {
     }
 }
 GifBoardComponent.ɵfac = function GifBoardComponent_Factory(t) { return new (t || GifBoardComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_service_game_game_service__WEBPACK_IMPORTED_MODULE_2__["GameService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_service_card_selection_card_selection_service__WEBPACK_IMPORTED_MODULE_3__["CardSelectionService"])); };
-GifBoardComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: GifBoardComponent, selectors: [["app-gif-board"]], decls: 8, vars: 4, consts: [["fxFlex", "", "fxLayout", "column", "fxLayoutAlign", "center center", "fxLayoutGap", "1em"], [1, "gif"], ["alt", "current-round-gif", 3, "src"], ["layout", "row", "fxLayoutAlign", "end"], ["alt", "via-tenor", "src", "../../assets/tenor/via_tenor_logo_white.png", 2, "width", "10%", "max-width", "100px"], ["fxLayout", "row", "fxLayoutAlign", "center center", 4, "ngIf"], ["fxLayout", "column", "fxLayoutAlign", "center center", 4, "ngIf"], ["fxLayout", "row", "fxLayoutAlign", "center center"], ["fxFlex", "", "mat-raised-button", "", "color", "primary", 3, "click", 4, "ngIf"], ["class", "mat-display-2", "style", "margin-bottom: 0;color: #e91e63;", 4, "ngIf"], ["fxFlex", "", "mat-raised-button", "", "color", "primary", 3, "click"], [1, "mat-display-2", 2, "margin-bottom", "0", "color", "#e91e63"], ["fxLayout", "column", "fxLayoutAlign", "center center"]], template: function GifBoardComponent_Template(rf, ctx) { if (rf & 1) {
+GifBoardComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: GifBoardComponent, selectors: [["app-gif-board"]], decls: 8, vars: 4, consts: [["fxFlex", "", "fxLayout", "column", "fxLayoutAlign", "center center", "fxLayoutGap", "1em", 2, "max-width", "100%"], [1, "gif", 2, "max-width", "100%"], ["alt", "current-round-gif", 2, "max-width", "100%", 3, "src"], ["fxLayout", "row", "fxLayoutAlign", "end"], ["alt", "via-tenor", "src", "../../assets/tenor/via_tenor_logo_white.png", 2, "width", "10%", "max-width", "100px"], ["fxLayout", "row", "fxLayoutAlign", "center center", 4, "ngIf"], ["fxLayout", "column", "fxLayoutAlign", "center center", 4, "ngIf"], ["fxLayout", "row", "fxLayoutAlign", "center center"], ["fxFlex", "", "mat-raised-button", "", "color", "primary", 3, "click", 4, "ngIf"], ["class", "mat-display-2", "style", "margin-bottom: 0;color: #e91e63;", 4, "ngIf"], ["fxFlex", "", "mat-raised-button", "", "color", "primary", 3, "click"], [1, "mat-display-2", 2, "margin-bottom", "0", "color", "#e91e63"], ["fxLayout", "column", "fxLayoutAlign", "center center"]], template: function GifBoardComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "mat-card", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](2, "img", 2);
@@ -2220,8 +2209,8 @@ function GameComponent_app_wait_game_start_4_Template(rf, ctx) { if (rf & 1) {
 } }
 function GameComponent_div_5_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 5);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](1, "app-gif-board", 6);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](2, "app-card-list", 7);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](1, "app-gif-board", 4);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](2, "app-card-list", 6);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } }
 class GameComponent {
@@ -2233,7 +2222,7 @@ class GameComponent {
     }
 }
 GameComponent.ɵfac = function GameComponent_Factory(t) { return new (t || GameComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_service_game_game_service__WEBPACK_IMPORTED_MODULE_1__["GameService"])); };
-GameComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: GameComponent, selectors: [["app-game"]], decls: 6, vars: 2, consts: [["fxLayout", "row", "fxLayoutGap", "20px", "fxFlex", ""], ["fxFlex", "20", "fxLayout", "column", "fxLayoutAlign", "space-between", 1, "sidenav"], ["fxFlex", "100", 4, "ngIf"], ["fxFlex", "100", "fxLayout", "column", "fxLayoutGap", "1em", 4, "ngIf"], ["fxFlex", "100"], ["fxFlex", "100", "fxLayout", "column", "fxLayoutGap", "1em"], ["fxFlex", "80"], ["fxFlex", "20"]], template: function GameComponent_Template(rf, ctx) { if (rf & 1) {
+GameComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: GameComponent, selectors: [["app-game"]], decls: 6, vars: 2, consts: [["fxLayout", "row", "fxLayoutGap", "20px", "fxFlex", "", 2, "width", "100%", "max-width", "100%"], ["fxFlex", "20", "fxLayout", "column", "fxLayoutAlign", "space-between", 1, "sidenav"], ["fxFlex", "80", 4, "ngIf"], ["fxLayout", "column", "fxLayoutGap", "1em", "style", "background-color: red; max-width: calc(100% - 160px); width:100%;", 4, "ngIf"], ["fxFlex", "80"], ["fxLayout", "column", "fxLayoutGap", "1em", 2, "background-color", "red", "max-width", "calc(100% - 160px)", "width", "100%"], ["fxFlex", "20"]], template: function GameComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "mat-card", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](2, "app-game-status");
