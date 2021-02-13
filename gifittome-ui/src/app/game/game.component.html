@@ -5,7 +5,7 @@
   </mat-card>
   <app-wait-game-start fxFlex="80" *ngIf="!gameService.get().active"></app-wait-game-start>
 
-  <div *ngIf="gameService.get().active" fxLayout="column" fxLayoutGap="1em" style="background-color: red; max-width: calc(100% - 160px); width:100%;">
+  <div *ngIf="gameService.get().active" fxLayout="column" fxLayoutGap="1em" style="max-width: calc(100% - 160px); width:100%;">
     <app-gif-board fxFlex="80"></app-gif-board>
     <app-card-list fxFlex="20"></app-card-list>
   </div>
