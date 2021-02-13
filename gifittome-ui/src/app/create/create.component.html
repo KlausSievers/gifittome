@@ -16,7 +16,7 @@
     <div style=" padding-top: 0.5em;" fxFlex fxLayout="row" fxLayoutAlign="space-between center">
       <mat-form-field appearance="outline">
         <mat-label>Game-Id</mat-label>
-        <input matInput placeholder="" [(ngModel)]="gameId">
+        <input matInput placeholder="" [(ngModel)]="gameId"  (keyup.enter)="getGame()">
       </mat-form-field>
       <button mat-raised-button color="primary" (click)="getGame()" style="margin-left: 0.5em;" [disabled]="!gameId">Gif me MY game</button>
     </div>

@@ -49,7 +49,9 @@ export class CreateComponent implements OnInit {
   }
 
   public getGame() {
-    this.router.navigate(['game', this.gameId, 'join']);
+    if (this.gameId) {
+      this.router.navigate(['game', this.gameId, 'join']);
+    }
   }
 
   private shuffle(a) {

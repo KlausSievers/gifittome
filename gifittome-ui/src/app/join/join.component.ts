@@ -45,22 +45,24 @@ export class JoinComponent implements OnInit {
   }
 
   public joinGame() {
-    if (this.gifIntervalSubscribtion) {
-      this.gifIntervalSubscribtion.unsubscribe();
-    }
-    let cookie = this.getCookieValue('game');
-    let player = {
-      name: this.playerName,
-      id: cookie.playerId
-    };
+    if (this.playerName) {
+      if (this.gifIntervalSubscribtion) {
+        this.gifIntervalSubscribtion.unsubscribe();
+      }
+      let cookie = this.getCookieValue('game');
+      let player = {
+        name: this.playerName,
+        id: cookie.playerId
+      };
 
-    this.gameSevice.join(this.gameId, player).subscribe((game) => {
-      this.router.navigate(['game', this.gameId, 'play']);
-    });
+      this.gameSevice.join(this.gameId, player).subscribe((game) => {
+        this.router.navigate(['game', this.gameId, 'play']);
+      });
+    }
   }
 
-  private getCookieValue (name):any {
-    var cookieString =  document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop() || '';
+  private getCookieValue(name): any {
+    var cookieString = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop() || '';
     cookieString = decodeURIComponent(cookieString);
     cookieString = cookieString.substring(2); //express is prefixing json cookies with j: -> remove this befor parsing
     return JSON.parse(cookieString);
