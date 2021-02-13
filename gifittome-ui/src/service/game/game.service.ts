@@ -9,6 +9,7 @@ import { Round, RoundStatus } from './round';
 import { Card } from './card';
 import { CardSelectionService } from '../card-selection/card-selection.service';
 import { environment } from './../../environments/environment';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +27,7 @@ export class GameService {
   constructor(
     private http: HttpClient,
     private snackBar: MatSnackBar,
+    private router: Router,
     private cardSelectionService: CardSelectionService) {
   }
 
@@ -91,7 +93,12 @@ export class GameService {
         });
 
         this.socket.on('game-update', (response) => {
-          this.game = response;
+          this.game = response.game;
+          if(response.msg) {
+            this.snackBar.open(response.msg, '', {
+              duration: 2000,
+            });
+          }
           console.log('Round: ' + this.game.round);
           console.log('game-update', response);
         });
@@ -203,7 +210,13 @@ export class GameService {
   }
 
   public leave() {
+    this.emit('game/leave', {}).subscribe(()=> {
+      this.router.navigate(['/']);
+    });
+  }
 
+  public kick(player:Player) {
+    this.emit('game/kick', player).subscribe();
   }
 
   //--------------------

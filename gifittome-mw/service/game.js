@@ -30,8 +30,8 @@ io.on('connection', socket => {
           replyError(reply, 'name is already in use', msg);
         }
       } else {
-         replyError(reply, 'game already started', msg);
-       }
+        replyError(reply, 'game already started', msg);
+      }
     } else {
       replyError(reply, 'Invalid game id', msg);
     }
@@ -60,23 +60,6 @@ io.on('connection', socket => {
     }
   });
 
-  // socket.on('/game/round/start', (msg, reply) => {
-  //   var game = get(msg.gameId);
-  //   var name = msg.player;
-
-  //   if (game) {
-  //     let result = game.addPlayer(name, socket);
-  //     if (result) {
-  //       socket.join(game.id);
-  //       console.log('Player ' + name + ' joined game ' + game.id);
-  //       replySuccess(reply, game);
-  //     } else {
-  //       replyError(reply, 'name is already in use', msg);
-  //     }
-  //   } else {
-  //     replyError(reply, 'Invalid game id', msg);
-  //   }
-  // });
 });
 
 function replySuccess(reply, game) {
@@ -101,6 +84,7 @@ function Game(hostId) {
   this.player = {};
   this.host = null;
   this.playerOrder = [];
+  this.choosingPlayerIdx = 0;
   this.playedGifs = [];
   this.playedCards = [];
   this.round = 0;
@@ -137,12 +121,11 @@ Game.prototype.startRound = function () {
   this.playedGifs.push(gif.id);
   this.openedCards = 0;
 
-  let choosingPlayerIdx = this.round % this.playerOrder.length;
-  let choosingPlayer = this.playerOrder[choosingPlayerIdx];
+  let choosingPlayer = this.getNextChoosingPlayer();
   let cards = [];
   for (let i = 0; i < this.playerOrder.length; i++) {
     let p = this.playerOrder[i];
-    if (choosingPlayerIdx !== i) {
+    if (this.choosingPlayerIdx !== i) {
       p.socket.on('card-selected', (card, reply) => {
         this.onCardSelected(cards, card, p, choosingPlayer, reply);
       });
@@ -156,6 +139,15 @@ Game.prototype.startRound = function () {
   });
   return gif;
 };
+
+Game.prototype.getNextChoosingPlayer = function() {
+  this.choosingPlayerIdx++;
+  if(this.choosingPlayerIdx >= this.playerOrder) {
+    this.choosingPlayerIdx = 0;
+  }
+
+  return this.playerOrder[this.choosingPlayerIdx];
+}
 
 Game.prototype.onCardSelected = function (cards, card, player, choosingPlayer, reply) {
   player.socket.removeAllListeners('card-selected');
@@ -224,8 +216,12 @@ Game.prototype.onWinnerSelected = function (winnerMsg, cards) {
   this.startNextRoundVoting();
 };
 
-Game.prototype.sendGameUpdate = function () {
-  io.in(this.id).emit('game-update', this.getGameToSend());
+Game.prototype.sendGameUpdate = function (msg) {
+  io.in(this.id).emit('game-update',
+    {
+      msg: msg, game:
+        this.getGameToSend()
+    });
 };
 
 Game.prototype.sendWinnerSelected = function (winningCard, cards) {
@@ -253,7 +249,7 @@ Game.prototype.startNextRoundVoting = function () {
         p.socket.removeAllListeners('next-round-vote');
         p.okay = true;
         nextRoundCount++;
-        console.log('ROund count: ', nextRoundCount);
+        console.log('Round count: ', nextRoundCount);
         if (nextRoundCount === playerArr.length) {
           this.resetPlayerStatus();
           this.startRound();
@@ -269,6 +265,49 @@ Game.prototype.resetPlayerStatus = function () {
   Object.values(this.player).forEach(p => {
     p.okay = false;
   });
+};
+
+Game.prototype.kick = function (player, reply) {
+  let msg = player.name + 'was kicked by ' + this.host.name;
+  msg += this.removePlayer(player);
+  replySuccess(reply, game);
+  this.sendGameUpdate(msg);
+};
+
+Game.prototype.leaveGame = function (player, reply) {
+  let msg = player.name + ' has left the game. ';
+  msg += this.removePlayer(player);
+  console.log(msg);
+  replySuccess(reply, this);
+  this.sendGameUpdate(msg);
+};
+
+Game.prototype.removePlayer = function(player) {
+  this.player[player.name].socket.removeAllListeners();
+  delete this.player[player.name];
+  let idx = this.playerOrder.findIndex((p) => p.id === player.id);
+  if (idx > -1) {
+    this.playerOrder.splice(idx, 1);
+  }
+
+  let msg = '';
+  if (this.playerOrder.length <= 2) {
+    //@todo Spiel beenden
+  } else {
+    if (this.playerOrder[this.choosingPlayerIdx].id === player.id) {
+      //@todo hier wird noch Spieler uebersprungen, dadurch, dass der choosingPlayerIdx erhoeht wird
+      this.startRound();
+      msg +=  player.name + ' was the choosing player. We start a new round. ';
+    }
+
+    if(this.host.id === player.id) {
+      this.host = this.playerOrder[0];
+      this.host.makeHost();
+      msg +=  player.name + ' was the host. Congratulation to '+this.host.name+" on the promotion";
+    }
+  }
+
+  return msg;
 };
 
 Game.prototype.saveGame = function () {
@@ -298,8 +337,8 @@ Game.prototype.saveGame = function () {
 Game.prototype.saveRound = function (winningCard, cards) {
   if (this.dbId) {
     let insertRound = 'INSERT INTO `Round` (`gameId`, `gifId`) VALUES (' + this.dbId + ',' + this.playedGifs[this.playedGifs.length - 1] + ');';
-      //@todo klappt nicht wenn viele hintereinander eingefuegt werden, 
-      //zb. bei meheren spielen oder fuer die gewinnerkarte
+    //@todo klappt nicht wenn viele hintereinander eingefuegt werden, 
+    //zb. bei meheren spielen oder fuer die gewinnerkarte
     let selectId = 'SELECT LAST_INSERT_ID() as lastId;';
 
     db.query(insertRound, function (errInsertGame, resultInsertGame, fieldsInsertGame) {
@@ -367,21 +406,6 @@ function shuffle(a) {
   }
 }
 
-
-// Game.prototype.finishRound = function (winner) {
-//   if (this.activeRound) {
-//     ??????????????????
-//     this.player[winner].won.push(this.playedGifs[this.playedGifs.length - 1]);
-//     io.in(this.id).emit('finish-round', {
-//       winner: winner,
-//       score: this.player.getPlayerToSend()
-//     });
-//     this.activeRound = false;
-//   } else {
-//     console.log('no active round');
-//   }
-// };
-
 Game.prototype.finish = function () {
   delete runningGames[this.id];
   io.in(this.id).emit('finish', this.player);
@@ -391,8 +415,9 @@ Game.prototype.addPlayer = function (id, name, socket) {
   if (!this.player[name]) {
     let player = new Player(id, name, this, socket);
     this.player[name] = player;
-    if(this.hostId === id) {
+    if (this.hostId === id) {
       this.host = player;
+      this.host.makeHost();
     }
     let gameToSend = this.getGameToSend();
     io.in(this.id).emit('player-joined', {
@@ -426,11 +451,16 @@ function Player(id, name, game, socket) {
   this.won = 0;
   this.cards = [];
   this.okay = false;
+
+  let self = this;
+  socket.on('game/leave', (msg, reply) => {
+    self.game.leaveGame(self, reply);
+  });
 }
 
 Player.prototype.giveCards = function (count) {
   this.cards = this.cards.concat(this.game.getNextCards(count));
-  this.socket.emit('new-cards', this.cards)
+  this.socket.emit('new-cards', this.cards);
 };
 
 Player.prototype.getPlayerToSend = function () {
@@ -442,12 +472,19 @@ Player.prototype.getPlayerToSend = function () {
   };
 };
 
+Player.prototype.makeHost = function() {
+  let self = this;
+  this.socket.on('game/kick', (msg, reply) => {
+    self.game.kick(self, reply);
+  });
+};
+
 function create() {
   let hostId = generatePlayerId();
   let game = new Game(hostId);
   runningGames[game.id] = game;
   console.log('New Game created ' + game.id);
-  return  {
+  return {
     gameId: game.id,
     playerId: hostId
   };
