@@ -41,7 +41,7 @@
   </div>
   <div *ngIf="gameService.isHost()">
     <button mat-raised-button color="primary" (click)="startGame()" [disabled]="gameService.get().player.length < 3">Start Game</button>
-    <div style="color: #e91e63; font-size: x-small;">min. 3 Gifer</div>
+    <div *ngIf="gameService.get().player.length < 3" style="color: #e91e63; font-size: x-small;">min. 3 Gifer</div>
   </div>
   <div *ngIf="!gameService.isHost()">Wating for game start...</div>
 </mat-card>
