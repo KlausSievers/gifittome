@@ -1613,31 +1613,37 @@
       /*! @angular/common */
       "ofXK");
 
+      function WaitGameStartComponent_div_42_div_3_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 16);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1, "min. 3 Gifer");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        }
+      }
+
       function WaitGameStartComponent_div_42_Template(rf, ctx) {
         if (rf & 1) {
-          var _r3 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
+          var _r4 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "button", 14);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function WaitGameStartComponent_div_42_Template_button_click_1_listener() {
-            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r3);
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r4);
 
-            var ctx_r2 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+            var ctx_r3 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
 
-            return ctx_r2.startGame();
+            return ctx_r3.startGame();
           });
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2, "Start Game");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "div", 15);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](4, "min. 3 Gifer");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](3, WaitGameStartComponent_div_42_div_3_Template, 2, 0, "div", 15);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         }
@@ -1648,6 +1654,10 @@
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("disabled", ctx_r0.gameService.get().player.length < 3);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx_r0.gameService.get().player.length < 3);
         }
       }
 
@@ -1702,7 +1712,7 @@
         selectors: [["app-wait-game-start"]],
         decls: 44,
         vars: 4,
-        consts: [["fxFlex", "100", "fxLayout", "column", "fxLayoutAlign", "center center"], [1, "gif", 2, "max-width", "500px"], [2, "font-family", "Roboto", "letter-spacing", "normal"], ["id", "rule-list"], [1, "highlight", 2, "text-decoration", "underline"], [1, "highlight", 2, "color", "#e91e63"], [1, "highlight", 2, "color", "#76FF03"], ["fxLayout", "row", "fxLayoutAlign", "start end", 2, "margin-top", "2em"], [2, "color", "white", "padding-bottom", "2.3em", "padding-right", "1em"], ["appearance", "outline"], ["id", "link-input", "matInput", "", "placeholder", "", 3, "value"], ["mat-raised-button", "", "color", "primary", 2, "margin-left", "0.5em", "margin-bottom", "1.7em", 3, "click"], [2, "position", "relative", "top", "-1.5em", "font-size", "smaller"], [4, "ngIf"], ["mat-raised-button", "", "color", "primary", 3, "disabled", "click"], [2, "color", "#e91e63", "font-size", "x-small"]],
+        consts: [["fxFlex", "100", "fxLayout", "column", "fxLayoutAlign", "center center"], [1, "gif", 2, "max-width", "500px"], [2, "font-family", "Roboto", "letter-spacing", "normal"], ["id", "rule-list"], [1, "highlight", 2, "text-decoration", "underline"], [1, "highlight", 2, "color", "#e91e63"], [1, "highlight", 2, "color", "#76FF03"], ["fxLayout", "row", "fxLayoutAlign", "start end", 2, "margin-top", "2em"], [2, "color", "white", "padding-bottom", "2.3em", "padding-right", "1em"], ["appearance", "outline"], ["id", "link-input", "matInput", "", "placeholder", "", 3, "value"], ["mat-raised-button", "", "color", "primary", 2, "margin-left", "0.5em", "margin-bottom", "1.7em", 3, "click"], [2, "position", "relative", "top", "-1.5em", "font-size", "smaller"], [4, "ngIf"], ["mat-raised-button", "", "color", "primary", 3, "disabled", "click"], ["style", "color: #e91e63; font-size: x-small;", 4, "ngIf"], [2, "color", "#e91e63", "font-size", "x-small"]],
         template: function WaitGameStartComponent_Template(rf, ctx) {
           if (rf & 1) {
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "mat-card", 0);
@@ -1837,7 +1847,7 @@
 
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](42, WaitGameStartComponent_div_42_Template, 5, 1, "div", 13);
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](42, WaitGameStartComponent_div_42_Template, 4, 2, "div", 13);
 
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](43, WaitGameStartComponent_div_43_Template, 2, 0, "div", 13);
 
@@ -1921,27 +1931,27 @@
       /* harmony import */
 
 
-      var _angular_material_menu__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-      /*! @angular/material/menu */
-      "STbY");
-      /* harmony import */
-
-
-      var src_service_game_game_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      var src_service_game_game_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
       /*! src/service/game/game.service */
       "iaKJ");
       /* harmony import */
 
 
-      var _confirm_dialog_confirm_dialog_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      var _confirm_dialog_confirm_dialog_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
       /*! ../confirm-dialog/confirm-dialog.component */
       "3dBE");
       /* harmony import */
 
 
-      var _angular_common__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+      var _angular_common__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
       /*! @angular/common */
       "ofXK");
+      /* harmony import */
+
+
+      var _angular_material_menu__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+      /*! @angular/material/menu */
+      "STbY");
       /* harmony import */
 
 
@@ -1955,91 +1965,20 @@
       /*! @angular/material/button */
       "bTqV");
 
-      var _c0 = function _c0(a0, a1, a2, a3) {
-        return {
-          "myself": a0,
-          "choosing": a1,
-          "okay": a2,
-          "clickable": a3
-        };
-      };
-
-      var _c1 = function _c1(a0, a1, a2) {
-        return {
-          "myself": a0,
-          "choosing": a1,
-          "okay": a2
-        };
-      };
-
-      function GameStatusComponent_ng_container_1_Template(rf, ctx) {
+      function GameStatusComponent_ng_container_1_ng_template_7_button_0_Template(rf, ctx) {
         if (rf & 1) {
-          var _r5 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
+          var _r9 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementContainerStart"](0);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "button", 7);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 5);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function GameStatusComponent_ng_container_1_ng_template_7_button_0_Template_button_click_0_listener() {
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r9);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function GameStatusComponent_ng_container_1_Template_div_click_1_listener() {
-            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r5);
+            var player_r4 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]().player;
 
-            var p_r3 = ctx.$implicit;
+            var ctx_r7 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2);
 
-            var ctx_r4 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
-
-            return ctx_r4.selectPlayer(p_r3);
-          });
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "div", 6);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](4);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementContainerEnd"]();
-        }
-
-        if (rf & 2) {
-          var p_r3 = ctx.$implicit;
-
-          var ctx_r0 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction4"](4, _c0, ctx_r0.isMyself(p_r3), ctx_r0.gameService.isChoosingPlayer(p_r3), p_r3.okay, ctx_r0.gameService.isHost() || ctx_r0.isMyself(p_r3)));
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", p_r3.name, " ");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction3"](9, _c1, ctx_r0.isMyself(p_r3), ctx_r0.gameService.isChoosingPlayer(p_r3), p_r3.okay));
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", p_r3.won, " ");
-        }
-      }
-
-      function GameStatusComponent_ng_template_4_button_0_Template(rf, ctx) {
-        if (rf & 1) {
-          var _r11 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "button", 8);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function GameStatusComponent_ng_template_4_button_0_Template_button_click_0_listener() {
-            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r11);
-
-            var player_r6 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]().player;
-
-            var ctx_r9 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
-
-            return ctx_r9.kickPlayer(player_r6);
+            return ctx_r7.kickPlayer(player_r4);
           });
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "span");
@@ -2052,18 +1991,18 @@
         }
       }
 
-      function GameStatusComponent_ng_template_4_button_1_Template(rf, ctx) {
+      function GameStatusComponent_ng_container_1_ng_template_7_button_1_Template(rf, ctx) {
         if (rf & 1) {
-          var _r13 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
+          var _r11 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "button", 8);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "button", 7);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function GameStatusComponent_ng_template_4_button_1_Template_button_click_0_listener() {
-            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r13);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function GameStatusComponent_ng_container_1_ng_template_7_button_1_Template_button_click_0_listener() {
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r11);
 
-            var ctx_r12 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2);
+            var ctx_r10 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](3);
 
-            return ctx_r12.leaveGame();
+            return ctx_r10.leaveGame();
           });
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "span");
@@ -2076,23 +2015,98 @@
         }
       }
 
-      function GameStatusComponent_ng_template_4_Template(rf, ctx) {
+      function GameStatusComponent_ng_container_1_ng_template_7_Template(rf, ctx) {
         if (rf & 1) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](0, GameStatusComponent_ng_template_4_button_0_Template, 3, 0, "button", 7);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](0, GameStatusComponent_ng_container_1_ng_template_7_button_0_Template, 3, 0, "button", 6);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](1, GameStatusComponent_ng_template_4_button_1_Template, 3, 0, "button", 7);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](1, GameStatusComponent_ng_container_1_ng_template_7_button_1_Template, 3, 0, "button", 6);
         }
 
         if (rf & 2) {
-          var player_r6 = ctx.player;
+          var player_r4 = ctx.player;
 
-          var ctx_r2 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+          var ctx_r3 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", !ctx_r2.isMyself(player_r6));
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", !ctx_r3.isMyself(player_r4));
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx_r2.isMyself(player_r6));
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx_r3.isMyself(player_r4));
+        }
+      }
+
+      var _c0 = function _c0(a0) {
+        return {
+          player: a0
+        };
+      };
+
+      var _c1 = function _c1(a0, a1, a2, a3) {
+        return {
+          "myself": a0,
+          "choosing": a1,
+          "okay": a2,
+          "clickable": a3
+        };
+      };
+
+      var _c2 = function _c2(a0, a1, a2) {
+        return {
+          "myself": a0,
+          "choosing": a1,
+          "okay": a2
+        };
+      };
+
+      function GameStatusComponent_ng_container_1_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementContainerStart"](0);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 2);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "div", 3);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](4);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](5, "mat-menu", null, 4);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](7, GameStatusComponent_ng_container_1_ng_template_7_Template, 2, 2, "ng-template", 5);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](8, "div");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementContainerEnd"]();
+        }
+
+        if (rf & 2) {
+          var p_r1 = ctx.$implicit;
+
+          var _r2 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](6);
+
+          var ctx_r0 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("matMenuTriggerFor", _r2)("matMenuTriggerData", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction1"](6, _c0, p_r1))("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction4"](8, _c1, ctx_r0.isMyself(p_r1), ctx_r0.gameService.isChoosingPlayer(p_r1), p_r1.okay, ctx_r0.gameService.isHost() || ctx_r0.isMyself(p_r1)));
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", p_r1.name, " ");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction3"](13, _c2, ctx_r0.isMyself(p_r1), ctx_r0.gameService.isChoosingPlayer(p_r1), p_r1.okay));
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", p_r1.won, " ");
         }
       }
 
@@ -2101,10 +2115,12 @@
           _classCallCheck(this, GameStatusComponent);
 
           this.dialog = dialog;
-          this.gameService = gameService;
+          this.gameService = gameService; // @ViewChild(MatMenuTrigger) playerMenu: MatMenuTrigger;
+
           this.menuData = {
             player: null
           };
+          this.menuName = '';
         }
 
         _createClass(GameStatusComponent, [{
@@ -2113,86 +2129,69 @@
         }, {
           key: "isMyself",
           value: function isMyself(player) {
+            //@todo vor game start -> cannot read property name of undefined
             return player.name === this.gameService.getPlayer().name;
-          }
-        }, {
-          key: "selectPlayer",
-          value: function selectPlayer(player) {
-            if (this.gameService.isHost() || this.isMyself(player)) {
-              this.menuData.player = player;
-              this.playerMenu.openMenu();
-            }
-          }
+          } // public selectPlayer(player: Player) {
+          //   if (this.gameService.isHost() || this.isMyself(player)) {
+          //     this.menuData.player = player;
+          //     this.menuName = 'playerMenu';
+          //     ((this.playerMenu.openMenu();
+          //   }
+          // }
+
         }, {
           key: "kickPlayer",
           value: function kickPlayer(player) {
+            var _this3 = this;
+
             var message = 'Are you sure you want to kick ' + player.name + ' ?';
-            var dialogData = new _confirm_dialog_confirm_dialog_component__WEBPACK_IMPORTED_MODULE_4__["ConfirmDialogModel"]("Confirm Action", message);
-            var dialogRef = this.dialog.open(_confirm_dialog_confirm_dialog_component__WEBPACK_IMPORTED_MODULE_4__["ConfirmDialogComponent"], {
+            var dialogData = new _confirm_dialog_confirm_dialog_component__WEBPACK_IMPORTED_MODULE_3__["ConfirmDialogModel"]("Confirm Action", message);
+            var dialogRef = this.dialog.open(_confirm_dialog_confirm_dialog_component__WEBPACK_IMPORTED_MODULE_3__["ConfirmDialogComponent"], {
               maxWidth: "400px",
               data: dialogData
             });
             dialogRef.afterClosed().subscribe(function (dialogResult) {
-              if (dialogResult) {}
+              if (dialogResult) {
+                _this3.gameService.kick(player);
+              }
             });
           }
         }, {
           key: "leaveGame",
-          value: function leaveGame() {}
+          value: function leaveGame() {
+            this.gameService.leave();
+          }
         }]);
 
         return GameStatusComponent;
       }();
 
       GameStatusComponent.ɵfac = function GameStatusComponent_Factory(t) {
-        return new (t || GameStatusComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_material_dialog__WEBPACK_IMPORTED_MODULE_1__["MatDialog"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_service_game_game_service__WEBPACK_IMPORTED_MODULE_3__["GameService"]));
+        return new (t || GameStatusComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_material_dialog__WEBPACK_IMPORTED_MODULE_1__["MatDialog"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_service_game_game_service__WEBPACK_IMPORTED_MODULE_2__["GameService"]));
       };
 
       GameStatusComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({
         type: GameStatusComponent,
         selectors: [["app-game-status"]],
-        viewQuery: function GameStatusComponent_Query(rf, ctx) {
-          if (rf & 1) {
-            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵviewQuery"](_angular_material_menu__WEBPACK_IMPORTED_MODULE_2__["MatMenuTrigger"], true);
-          }
-
-          if (rf & 2) {
-            var _t;
-
-            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵqueryRefresh"](_t = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵloadQuery"]()) && (ctx.playerMenu = _t.first);
-          }
-        },
-        decls: 5,
-        vars: 3,
-        consts: [[1, "game-status", 2, "display", "grid", "grid-template-columns", "auto auto"], [4, "ngFor", "ngForOf"], [3, "matMenuTriggerFor", "matMenuTriggerData"], ["playerMenu", "matMenu"], ["matMenuContent", ""], [1, "player", 3, "ngClass", "click"], [1, "player", 3, "ngClass"], ["mat-raised-button", "", "color", "primary", "style", "width: 100%;", 3, "click", 4, "ngIf"], ["mat-raised-button", "", "color", "primary", 2, "width", "100%", 3, "click"]],
+        decls: 2,
+        vars: 1,
+        consts: [[1, "game-status", 2, "display", "grid", "grid-template-columns", "auto auto"], [4, "ngFor", "ngForOf"], [1, "player", 3, "matMenuTriggerFor", "matMenuTriggerData", "ngClass"], [1, "player", 3, "ngClass"], ["playerMenu", "matMenu"], ["matMenuContent", ""], ["mat-raised-button", "", "color", "primary", "style", "width: 100%;", 3, "click", 4, "ngIf"], ["mat-raised-button", "", "color", "primary", 2, "width", "100%", 3, "click"]],
         template: function GameStatusComponent_Template(rf, ctx) {
           if (rf & 1) {
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](1, GameStatusComponent_ng_container_1_Template, 5, 13, "ng-container", 1);
-
-            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "mat-menu", 2, 3);
-
-            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](4, GameStatusComponent_ng_template_4_Template, 2, 2, "ng-template", 4);
-
-            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](1, GameStatusComponent_ng_container_1_Template, 9, 17, "ng-container", 1);
 
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
           }
 
           if (rf & 2) {
-            var _r1 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](3);
-
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngForOf", ctx.gameService.get().player);
-
-            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-
-            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("matMenuTriggerFor", _r1)("matMenuTriggerData", ctx.menuData);
           }
         },
-        directives: [_angular_common__WEBPACK_IMPORTED_MODULE_5__["NgForOf"], _angular_material_menu__WEBPACK_IMPORTED_MODULE_2__["_MatMenu"], _angular_material_menu__WEBPACK_IMPORTED_MODULE_2__["MatMenuTrigger"], _angular_material_menu__WEBPACK_IMPORTED_MODULE_2__["MatMenuContent"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgClass"], _angular_flex_layout_extended__WEBPACK_IMPORTED_MODULE_6__["DefaultClassDirective"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgIf"], _angular_material_button__WEBPACK_IMPORTED_MODULE_7__["MatButton"]],
+        directives: [_angular_common__WEBPACK_IMPORTED_MODULE_4__["NgForOf"], _angular_material_menu__WEBPACK_IMPORTED_MODULE_5__["MatMenuTrigger"], _angular_common__WEBPACK_IMPORTED_MODULE_4__["NgClass"], _angular_flex_layout_extended__WEBPACK_IMPORTED_MODULE_6__["DefaultClassDirective"], _angular_material_menu__WEBPACK_IMPORTED_MODULE_5__["_MatMenu"], _angular_material_menu__WEBPACK_IMPORTED_MODULE_5__["MatMenuContent"], _angular_common__WEBPACK_IMPORTED_MODULE_4__["NgIf"], _angular_material_button__WEBPACK_IMPORTED_MODULE_7__["MatButton"]],
         styles: [".player.myself[_ngcontent-%COMP%] {\n  text-decoration: underline;\n}\n\n.player.choosing[_ngcontent-%COMP%] {\n  color: #e91e63;\n}\n\n.player.okay[_ngcontent-%COMP%] {\n  color: #76FF03;\n}\n\n.player.clickable[_ngcontent-%COMP%] {\n  cursor: pointer;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uXFwuLlxcLi5cXGdhbWUtc3RhdHVzLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsMEJBQUE7QUFDRjs7QUFFQTtFQUNFLGNBQUE7QUFDRjs7QUFFQTtFQUNFLGNBQUE7QUFDRjs7QUFFQTtFQUNFLGVBQUE7QUFDRiIsImZpbGUiOiJnYW1lLXN0YXR1cy5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5wbGF5ZXIubXlzZWxmIHtcclxuICB0ZXh0LWRlY29yYXRpb246IHVuZGVybGluZTtcclxufVxyXG5cclxuLnBsYXllci5jaG9vc2luZyB7XHJcbiAgY29sb3I6ICNlOTFlNjM7IC8vQHRvZG8gdmFyaWFibGUgcGluayA1MDBcclxufVxyXG5cclxuLnBsYXllci5va2F5IHtcclxuICBjb2xvcjogIzc2RkYwMyAvL2xpZ2h0IGdyZWVuIEE0MDBcclxufVxyXG5cclxuLnBsYXllci5jbGlja2FibGUge1xyXG4gIGN1cnNvcjogcG9pbnRlcjtcclxufVxyXG4iXX0= */"]
       });
       /*@__PURE__*/
@@ -2209,14 +2208,9 @@
           return [{
             type: _angular_material_dialog__WEBPACK_IMPORTED_MODULE_1__["MatDialog"]
           }, {
-            type: src_service_game_game_service__WEBPACK_IMPORTED_MODULE_3__["GameService"]
+            type: src_service_game_game_service__WEBPACK_IMPORTED_MODULE_2__["GameService"]
           }];
-        }, {
-          playerMenu: [{
-            type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"],
-            args: [_angular_material_menu__WEBPACK_IMPORTED_MODULE_2__["MatMenuTrigger"]]
-          }]
-        });
+        }, null);
       })();
       /***/
 
@@ -2457,40 +2451,42 @@
         _createClass(JoinComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this3 = this;
+            var _this4 = this;
 
             this.route.params.subscribe(function (params) {
-              _this3.gameId = params['gameId'];
+              _this4.gameId = params['gameId'];
             });
             var startGifSubscribtion = this.gifService.start().subscribe(function (data) {
               startGifSubscribtion.unsubscribe();
-              _this3.startGifs = data;
+              _this4.startGifs = data;
 
-              _this3.shuffle(_this3.startGifs);
+              _this4.shuffle(_this4.startGifs);
 
               var gifInterval = Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["timer"])(0, 15000);
-              _this3.gifIntervalSubscribtion = gifInterval.subscribe(function (n) {
-                return _this3.currentGif = _this3.startGifs[n % _this3.startGifs.length];
+              _this4.gifIntervalSubscribtion = gifInterval.subscribe(function (n) {
+                return _this4.currentGif = _this4.startGifs[n % _this4.startGifs.length];
               });
             });
           }
         }, {
           key: "joinGame",
           value: function joinGame() {
-            var _this4 = this;
+            var _this5 = this;
 
-            if (this.gifIntervalSubscribtion) {
-              this.gifIntervalSubscribtion.unsubscribe();
+            if (this.playerName) {
+              if (this.gifIntervalSubscribtion) {
+                this.gifIntervalSubscribtion.unsubscribe();
+              }
+
+              var cookie = this.getCookieValue('game');
+              var player = {
+                name: this.playerName,
+                id: cookie.playerId
+              };
+              this.gameSevice.join(this.gameId, player).subscribe(function (game) {
+                _this5.router.navigate(['game', _this5.gameId, 'play']);
+              });
             }
-
-            var cookie = this.getCookieValue('game');
-            var player = {
-              name: this.playerName,
-              id: cookie.playerId
-            };
-            this.gameSevice.join(this.gameId, player).subscribe(function (game) {
-              _this4.router.navigate(['game', _this4.gameId, 'play']);
-            });
           }
         }, {
           key: "getCookieValue",
@@ -2529,7 +2525,7 @@
         selectors: [["app-join"]],
         decls: 16,
         vars: 3,
-        consts: [["fxFlex", "none", "fxFlexFill", "", "fxLayout", "column", "fxLayoutAlign", "space-between center", 2, "margin", "1em"], ["fxFlex", "", 1, "mat-display-4", 2, "margin-bottom", "28px"], ["fxFlex", "", "id", "start-gif-container", "fxFlex", "no-grow", "fxLayout", "column", "fxLayoutAlign", "center center"], ["fxLayoutAlign", "center center", 1, "gif"], ["id", "start-gif", "alt", "start-gif", 3, "src"], ["layout", "row", "fxLayoutAlign", "end"], ["alt", "via-tenor", "src", "../../assets/tenor/via_tenor_logo_white.png", 2, "width", "10%", "max-width", "100px"], ["fxFlex", "none", "fxLayout", "column", "fxLayoutAlign", "end center", 2, "margin-top", "2em"], ["fxFlex", "", "fxLayout", "row", "fxLayoutAlign", "space-between center", 2, "padding-top", "0.5em"], ["appearance", "outline"], ["matInput", "", "placeholder", "", 3, "ngModel", "ngModelChange"], ["mat-raised-button", "", "color", "primary", 2, "margin-left", "0.5em", 3, "disabled", "click"]],
+        consts: [["fxFlex", "none", "fxFlexFill", "", "fxLayout", "column", "fxLayoutAlign", "space-between center", 2, "margin", "1em"], ["fxFlex", "", 1, "mat-display-4", 2, "margin-bottom", "28px"], ["fxFlex", "", "id", "start-gif-container", "fxFlex", "no-grow", "fxLayout", "column", "fxLayoutAlign", "center center"], ["fxLayoutAlign", "center center", 1, "gif"], ["id", "start-gif", "alt", "start-gif", 3, "src"], ["layout", "row", "fxLayoutAlign", "end"], ["alt", "via-tenor", "src", "../../assets/tenor/via_tenor_logo_white.png", 2, "width", "10%", "max-width", "100px"], ["fxFlex", "none", "fxLayout", "column", "fxLayoutAlign", "end center", 2, "margin-top", "2em"], ["fxFlex", "", "fxLayout", "row", "fxLayoutAlign", "space-between center", 2, "padding-top", "0.5em"], ["appearance", "outline"], ["matInput", "", "placeholder", "", 3, "ngModel", "ngModelChange", "keyup.enter"], ["mat-raised-button", "", "color", "primary", 2, "margin-left", "0.5em", 3, "disabled", "click"]],
         template: function JoinComponent_Template(rf, ctx) {
           if (rf & 1) {
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "mat-card", 0);
@@ -2572,6 +2568,8 @@
 
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function JoinComponent_Template_input_ngModelChange_13_listener($event) {
               return ctx.playerName = $event;
+            })("keyup.enter", function JoinComponent_Template_input_keyup_enter_13_listener() {
+              return ctx.joinGame();
             });
 
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
@@ -3134,10 +3132,10 @@
         }, {
           key: "isOkay",
           value: function isOkay() {
-            var _this5 = this;
+            var _this6 = this;
 
             return this.gameService.get().player.find(function (p) {
-              return p.name === _this5.gameService.getPlayer().name;
+              return p.name === _this6.gameService.getPlayer().name;
             })['okay']; //@todo
           }
         }, {
@@ -3997,13 +3995,20 @@
       var _environments_environment__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
       /*! ./../../environments/environment */
       "AytR");
+      /* harmony import */
+
+
+      var _angular_router__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
+      /*! @angular/router */
+      "tyNb");
 
       var GameService = /*#__PURE__*/function () {
-        function GameService(http, snackBar, cardSelectionService) {
+        function GameService(http, snackBar, router, cardSelectionService) {
           _classCallCheck(this, GameService);
 
           this.http = http;
           this.snackBar = snackBar;
+          this.router = router;
           this.cardSelectionService = cardSelectionService;
           this.game = null;
           this.playerId = null;
@@ -4043,7 +4048,7 @@
         }, {
           key: "create",
           value: function create() {
-            var _this6 = this;
+            var _this7 = this;
 
             if (this.game) {
               this.leave();
@@ -4051,9 +4056,9 @@
 
             var idObserveable = this.http.get('/game/create');
             idObserveable.subscribe(function (ids) {
-              _this6.playerId = ids.playerId;
+              _this7.playerId = ids.playerId;
 
-              _this6.getSocket().subscribe(function () {
+              _this7.getSocket().subscribe(function () {
                 console.log('connected');
               });
             });
@@ -4062,75 +4067,82 @@
         }, {
           key: "getSocket",
           value: function getSocket() {
-            var _this7 = this;
+            var _this8 = this;
 
             return new rxjs__WEBPACK_IMPORTED_MODULE_4__["Observable"](function (observer) {
-              if (_this7.socket) {
-                observer.next(_this7.socket);
+              if (_this8.socket) {
+                observer.next(_this8.socket);
                 observer.complete();
               } else {
-                _this7.socket = socket_io_client__WEBPACK_IMPORTED_MODULE_3___default()(_environments_environment__WEBPACK_IMPORTED_MODULE_9__["environment"].websocket);
+                _this8.socket = socket_io_client__WEBPACK_IMPORTED_MODULE_3___default()(_environments_environment__WEBPACK_IMPORTED_MODULE_9__["environment"].websocket);
 
-                _this7.socket.on('connect', function () {
-                  observer.next(_this7.socket);
+                _this8.socket.on('connect', function () {
+                  observer.next(_this8.socket);
                   observer.complete();
                 });
 
-                _this7.socket.on('player-joined', function (response) {
-                  _this7.game = response.game;
-                  console.log('Round: ' + _this7.game.round);
+                _this8.socket.on('player-joined', function (response) {
+                  _this8.game = response.game;
+                  console.log('Round: ' + _this8.game.round);
 
-                  _this7.snackBar.open(response.newPlayer + ' has joined the game', '', {
+                  _this8.snackBar.open(response.newPlayer + ' has joined the game', '', {
                     duration: 2000
                   });
 
                   console.log('player-joined', response);
                 });
 
-                _this7.socket.on('game-update', function (response) {
-                  _this7.game = response;
-                  console.log('Round: ' + _this7.game.round);
+                _this8.socket.on('game-update', function (response) {
+                  _this8.game = response.game;
+
+                  if (response.msg) {
+                    _this8.snackBar.open(response.msg, '', {
+                      duration: 2000
+                    });
+                  }
+
+                  console.log('Round: ' + _this8.game.round);
                   console.log('game-update', response);
                 });
 
-                _this7.socket.on('start-round', function (response) {
-                  _this7.round = response;
-                  _this7.round.status = _round__WEBPACK_IMPORTED_MODULE_6__["RoundStatus"].CHOOSE_CARDS;
-                  _this7.winnerCard = null;
-                  _this7.openCards = [];
+                _this8.socket.on('start-round', function (response) {
+                  _this8.round = response;
+                  _this8.round.status = _round__WEBPACK_IMPORTED_MODULE_6__["RoundStatus"].CHOOSE_CARDS;
+                  _this8.winnerCard = null;
+                  _this8.openCards = [];
                   console.log('start-round', response);
                 });
 
-                _this7.socket.on('reveal-cards', function () {
-                  _this7.snackBar.open(_this7.round.choosingPlayer.name + ' reveal cards', '', {
+                _this8.socket.on('reveal-cards', function () {
+                  _this8.snackBar.open(_this8.round.choosingPlayer.name + ' reveal cards', '', {
                     duration: 2000
                   });
 
-                  _this7.openCards = [];
+                  _this8.openCards = [];
 
-                  for (var i = 0; i < _this7.game.player.length - 1; i++) {
-                    _this7.openCards.push(new _card__WEBPACK_IMPORTED_MODULE_7__["Card"]());
+                  for (var i = 0; i < _this8.game.player.length - 1; i++) {
+                    _this8.openCards.push(new _card__WEBPACK_IMPORTED_MODULE_7__["Card"]());
                   }
 
-                  _this7.round.status = _round__WEBPACK_IMPORTED_MODULE_6__["RoundStatus"].REVEAL_CARDS;
+                  _this8.round.status = _round__WEBPACK_IMPORTED_MODULE_6__["RoundStatus"].REVEAL_CARDS;
                 });
 
-                _this7.socket.on('card-revealed', function (card) {
+                _this8.socket.on('card-revealed', function (card) {
                   var c = new _card__WEBPACK_IMPORTED_MODULE_7__["Card"]();
                   c.value = card._value;
-                  _this7.openCards[card.index] = c;
+                  _this8.openCards[card.index] = c;
                 });
 
-                _this7.socket.on('start-voting', function () {
-                  _this7.round.status = _round__WEBPACK_IMPORTED_MODULE_6__["RoundStatus"].CHOOSE_WINNER;
+                _this8.socket.on('start-voting', function () {
+                  _this8.round.status = _round__WEBPACK_IMPORTED_MODULE_6__["RoundStatus"].CHOOSE_WINNER;
                 });
 
-                _this7.socket.on('winner-selected', function (response) {
-                  _this7.game = response.game;
-                  console.log('Round: ' + _this7.game.round);
-                  _this7.openCards = response.cards;
-                  _this7.winnerCard = response.winner;
-                  _this7.round.status = _round__WEBPACK_IMPORTED_MODULE_6__["RoundStatus"].START_NEXT_ROUND;
+                _this8.socket.on('winner-selected', function (response) {
+                  _this8.game = response.game;
+                  console.log('Round: ' + _this8.game.round);
+                  _this8.openCards = response.cards;
+                  _this8.winnerCard = response.winner;
+                  _this8.round.status = _round__WEBPACK_IMPORTED_MODULE_6__["RoundStatus"].START_NEXT_ROUND;
                 });
               }
             });
@@ -4138,15 +4150,15 @@
         }, {
           key: "join",
           value: function join(gameId, rawPlayer) {
-            var _this8 = this;
+            var _this9 = this;
 
             return new rxjs__WEBPACK_IMPORTED_MODULE_4__["Observable"](function (observer) {
-              _this8.emit('/game/join', {
+              _this9.emit('/game/join', {
                 gameId: gameId,
                 player: rawPlayer
               }).subscribe(function () {
-                _this8.getSocket().subscribe(function (socket) {
-                  _this8.player = new _player__WEBPACK_IMPORTED_MODULE_5__["Player"](rawPlayer.id, rawPlayer.name, socket);
+                _this9.getSocket().subscribe(function (socket) {
+                  _this9.player = new _player__WEBPACK_IMPORTED_MODULE_5__["Player"](rawPlayer.id, rawPlayer.name, socket);
                   observer.next();
                   observer.complete();
                 });
@@ -4156,13 +4168,13 @@
         }, {
           key: "start",
           value: function start() {
-            var _this9 = this;
+            var _this10 = this;
 
             console.log('Round: ' + this.game.round);
             return this.emit('/game/start', {
               gameId: this.game.id
             }).subscribe(function () {
-              _this9.snackBar.open('Let the games begin', '', {
+              _this10.snackBar.open('Let the games begin', '', {
                 duration: 2000
               });
             });
@@ -4170,10 +4182,10 @@
         }, {
           key: "playCard",
           value: function playCard(card) {
-            var _this10 = this;
+            var _this11 = this;
 
             return this.emit('card-selected', card).subscribe(function () {
-              _this10.round.cardPlayed = true;
+              _this11.round.cardPlayed = true;
             });
           }
         }, {
@@ -4198,20 +4210,20 @@
         }, {
           key: "emit",
           value: function emit(route, data) {
-            var _this11 = this;
+            var _this12 = this;
 
             return new rxjs__WEBPACK_IMPORTED_MODULE_4__["Observable"](function (observer) {
-              _this11.getSocket().subscribe(function (socket) {
+              _this12.getSocket().subscribe(function (socket) {
                 socket.emit(route, data, function (response) {
                   if (response.error) {
-                    _this11.snackBar.open(response.reason, '', {
+                    _this12.snackBar.open(response.reason, '', {
                       duration: 2000
                     });
 
                     observer.error(response);
                   } else {
-                    _this11.game = response.game;
-                    console.log('Round: ' + _this11.game.round);
+                    _this12.game = response.game;
+                    console.log('Round: ' + _this12.game.round);
                     observer.next(response);
                     observer.complete();
                   }
@@ -4221,7 +4233,18 @@
           }
         }, {
           key: "leave",
-          value: function leave() {} //--------------------
+          value: function leave() {
+            var _this13 = this;
+
+            this.emit('game/leave', {}).subscribe(function () {
+              _this13.router.navigate(['/']);
+            });
+          }
+        }, {
+          key: "kick",
+          value: function kick(player) {
+            this.emit('game/kick', player).subscribe();
+          } //--------------------
 
         }, {
           key: "isRoundStatus",
@@ -4247,7 +4270,7 @@
       }();
 
       GameService.ɵfac = function GameService_Factory(t) {
-        return new (t || GameService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_2__["MatSnackBar"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_card_selection_card_selection_service__WEBPACK_IMPORTED_MODULE_8__["CardSelectionService"]));
+        return new (t || GameService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_2__["MatSnackBar"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_router__WEBPACK_IMPORTED_MODULE_10__["Router"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_card_selection_card_selection_service__WEBPACK_IMPORTED_MODULE_8__["CardSelectionService"]));
       };
 
       GameService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
@@ -4268,6 +4291,8 @@
             type: _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]
           }, {
             type: _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_2__["MatSnackBar"]
+          }, {
+            type: _angular_router__WEBPACK_IMPORTED_MODULE_10__["Router"]
           }, {
             type: _card_selection_card_selection_service__WEBPACK_IMPORTED_MODULE_8__["CardSelectionService"]
           }];
