@@ -11,11 +11,6 @@ import { ConfirmDialogComponent, ConfirmDialogModel } from '../confirm-dialog/co
   styleUrls: ['./game-status.component.scss']
 })
 export class GameStatusComponent implements OnInit {
-  @ViewChild(MatMenuTrigger) playerMenu: MatMenuTrigger;
-
-  menuData = {
-    player: null
-  };
 
   constructor(
     public dialog: MatDialog,
@@ -27,13 +22,6 @@ export class GameStatusComponent implements OnInit {
 
   public isMyself(player: Player): boolean {
     return player.name === this.gameService.getPlayer().name;
-  }
-
-  public selectPlayer(player: Player) {
-    if (this.gameService.isHost() || this.isMyself(player)) {
-      this.menuData.player = player;
-      this.playerMenu.openMenu();
-    }
   }
 
   public kickPlayer(player: Player) {
@@ -48,13 +36,13 @@ export class GameStatusComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(dialogResult => {
       if(dialogResult) {
-
+        this.gameService.kick(player);
       }
     });
   }
 
   public leaveGame() {
-
+    this.gameService.leave();
   }
 
 }
