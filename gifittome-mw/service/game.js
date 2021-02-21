@@ -142,12 +142,12 @@ Game.prototype.startRound = function () {
 
 Game.prototype.getNextChoosingPlayer = function() {
   this.choosingPlayerIdx++;
-  if(this.choosingPlayerIdx >= this.playerOrder) {
+  if(this.choosingPlayerIdx >= this.playerOrder.length) {
     this.choosingPlayerIdx = 0;
   }
 
   return this.playerOrder[this.choosingPlayerIdx];
-}
+};
 
 Game.prototype.onCardSelected = function (cards, card, player, choosingPlayer, reply) {
   player.socket.removeAllListeners('card-selected');
