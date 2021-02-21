@@ -15,6 +15,11 @@ export class GameComponent implements OnInit {
     public gameService: GameService
   ) { }
 
+// coockie Service erstellen.
+// Hier nachgucken, ob man schonmal im Spiel war. ggf, dann JoinComponent
+
+// Socket Reconnect beachten und neu subscriben!
+
   ngOnInit(): void {
   }
 }
