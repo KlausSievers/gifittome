@@ -7,10 +7,10 @@
   </div>
   <div fxLayout="row" fxLayoutAlign="center center" *ngIf="gameService.isRoundStatus(RoundStatus.CHOOSE_WINNER)">
     <button fxFlex mat-raised-button color="primary" (click)="chooseWinner()" *ngIf="cardSelectionService.isCardSelected()">Als Gewinner wählen</button>
-    <div class="mat-display-2" *ngIf="!cardSelectionService.isCardSelected()" style="margin-bottom: 0;color: #e91e63;">Gewinner auswählen</div>
+    <div class="mat-display-1" ngClass.gt-sm="mat-display-2" *ngIf="!cardSelectionService.isCardSelected()" style="margin-bottom: 0;color: #e91e63;">Gewinner auswählen</div>
   </div>
   <div fxLayout="column" fxLayoutAlign="center center" *ngIf="gameService.getWinnerCard()">
-    <div class="mat-display-2" style="margin-bottom: 0;color: #e91e63;">{{gameService.getWinnerCard().player}} is the winner</div>
+    <div class="mat-display-1" ngClass.gt-sm="mat-display-2" style="margin-bottom: 0;color: #e91e63;">{{gameService.getWinnerCard().player}} is the winner</div>
   </div>
   <div fxLayout="row" fxLayoutAlign="center center" *ngIf="gameService.isRoundStatus(RoundStatus.START_NEXT_ROUND) && !isOkay()">
     <button fxFlex mat-raised-button color="primary" (click)="nextRound()">Next round</button>

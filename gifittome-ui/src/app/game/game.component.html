@@ -1,11 +1,11 @@
 <div fxLayout="row" fxLayoutGap="20px" fxFlex style="width:100%; max-width: 100%;">
-  <mat-card fxFlex="20" class="sidenav" fxLayout="column" fxLayoutAlign="space-between">
+  <mat-card fxHide fxShow.gt-sm fxFlex="20" class="sidenav" fxLayout="column" fxLayoutAlign="space-between">
     <app-game-status></app-game-status>
     <app-round-status></app-round-status>
   </mat-card>
   <app-wait-game-start fxFlex="80" *ngIf="!gameService.get().active"></app-wait-game-start>
 
-  <div *ngIf="gameService.get().active" fxLayout="column" fxLayoutGap="1em" style="max-width: calc(100% - 160px); width:100%;">
+  <div *ngIf="gameService.get().active" fxLayout="column" fxLayoutGap="1em" ngStyle.xs ="{'max-width': 100%}" ngStyle.gt-xs ="{'max-width': calc(100% - 160px)}"style="width:100%;">
     <app-gif-board fxFlex="80"></app-gif-board>
     <app-card-list fxFlex="20"></app-card-list>
   </div>

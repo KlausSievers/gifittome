@@ -1,5 +1,5 @@
 <mat-card fxFlex="100" fxLayout="column" fxLayoutAlign="center center">
-  <div class="gif" style="max-width: 500px;">
+  <div class="gif" style="max-width: 500px; overflow-y: auto;">
     <div>The Rules: </div>
     <div style="font-family: 'Roboto'; letter-spacing: normal;">
       <ol id="rule-list">
@@ -26,7 +26,7 @@
       </ol>
     </div>
   </div>
-  <div style="margin-top: 2em;" fxLayout="row" fxLayoutAlign="start end">
+  <div style="margin-top: 2em;" fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start end">
     <div style="color: white; padding-bottom: 2.3em; padding-right: 1em;">ID: {{gameService.get().id}}</div>
     <mat-form-field appearance="outline">
       <mat-label>Link</mat-label>
