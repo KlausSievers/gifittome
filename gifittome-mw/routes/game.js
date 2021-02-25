@@ -20,6 +20,23 @@ router.get('/:gameId/join', function (req, res, next) {
   sendIndex(res);  
 });
 
+router.get('/:gameId', function (req, res, next) {
+  let gameId = req.params.gameId;
+  res.json(gameService.get(gameId).getGameToSend());
+});
+
+router.get('/:gameId/round', function (req, res, next) {
+  let gameId = req.params.gameId;
+  res.json(gameService.get(gameId).getCurrentRound());
+});
+
+router.get('/:gameId/player/:playerId', function (req, res, next) {
+  let gameId = req.params.gameId;
+  let playerId = req.params.playerId;
+  res.json(gameService.get(gameId).getPlayer(playerId));
+});
+
+
 router.get('/*', function (req, res, next) {
   
   sendIndex(res);

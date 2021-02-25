@@ -25,7 +25,6 @@ export class Round {
     this._choosingPlayer = value;
   }
 
-  //@todo round status
   private _cardPlayed: boolean;
   public get cardPlayed(): boolean {
     return this._cardPlayed;

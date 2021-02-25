@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { GifService, Gif } from '../../service/gif/gif.service';
 import { GameService } from '../../service/game/game.service';
 import { timer } from 'rxjs';
+import { CookieService } from '../cookie.service';
 
 
 @Component({
@@ -21,6 +22,7 @@ export class JoinComponent implements OnInit {
   constructor(
     private gameSevice: GameService,
     private gifService: GifService,
+    private cookieService: CookieService,
     private route: ActivatedRoute,
     private router: Router
   ) { }
@@ -49,7 +51,7 @@ export class JoinComponent implements OnInit {
       if (this.gifIntervalSubscribtion) {
         this.gifIntervalSubscribtion.unsubscribe();
       }
-      let cookie = this.getCookieValue('game');
+      let cookie = this.cookieService.getValue('game');
       let player = {
         name: this.playerName,
         id: cookie.playerId
@@ -59,13 +61,6 @@ export class JoinComponent implements OnInit {
         this.router.navigate(['game', this.gameId, 'play']);
       });
     }
-  }
-
-  private getCookieValue(name): any {
-    var cookieString = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop() || '';
-    cookieString = decodeURIComponent(cookieString);
-    cookieString = cookieString.substring(2); //express is prefixing json cookies with j: -> remove this befor parsing
-    return JSON.parse(cookieString);
   }
 
   private shuffle(a) {

@@ -1,0 +1,7 @@
+module.exports = {
+  CHOOSE_GIF: 0,
+  CHOOSE_CARDS: 1,
+  REVEAL_CARDS: 2,
+  CHOOSE_WINNER: 3,
+  START_NEXT_ROUND :4
+}
