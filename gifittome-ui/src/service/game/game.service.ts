@@ -75,6 +75,8 @@ export class GameService {
 
   public request(id) {
     let cookie = this.cookieService.getValue('game');
+    this.game = new Game();
+    this.game.id = id;
 
     //@todo game id im cookie ueberpruefen??
     if (cookie.playerId) {
@@ -82,16 +84,9 @@ export class GameService {
       playerObserveable.subscribe(player => {
         if (player) {
           this.player = player;
-
           this.getSocket().subscribe(() => {
             console.log('connected');
 
-            this.emit('resubscribe', {
-              gameId: id,
-              player: player
-            }).subscribe(() => {
-              //
-            });
           });
 
           let gameObserveable = this.http.get<any>('/game/' + id);
@@ -126,8 +121,18 @@ export class GameService {
       } else {
         this.socket = io(environment.websocket);
         this.socket.on('connect', () => {
-          observer.next(this.socket);
-          observer.complete();
+          if(this.game !== null && this.player !== null) {
+            this.emit('resubscribe', {
+              gameId: this.game.id,
+              player: this.player.name
+            }).subscribe(() => {
+              observer.next(this.socket);
+              observer.complete();
+            });
+          } else {
+            observer.next(this.socket);
+            observer.complete();
+          }
         });
 
         this.socket.on('player-joined', (response) => {

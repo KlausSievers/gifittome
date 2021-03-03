@@ -50,34 +50,4 @@ function sendIndex(res) {
   }
 }
 
-// router.post('/:id/join', function (req, res, next) {
-//   let game = gameService.get(req.params.id);
-//   if (game) {
-//     game.addPlayer(req.body.player);
-//   } else {
-//     res.send('Invalid Game Id'); //@todo response code
-//   }
-// });
-
-// //@todo gameId check in funktion
-// router.get('/:id/round', function (req, res, next) {
-//   let game = gameService.get(req.params.id);
-//   if (game) {
-//     let centerCard = game.startRound();
-//     res.json(centerCard);
-//   } else {
-//     res.send('Invalid Game Id'); //@todo response code
-//   }
-// });
-
-// router.post('/:id/round', function (req, res, next) {
-//   let game = gameService.get(req.params.id);
-//   if (game) {
-//     let centerCard = game.startRound();
-//     res.json(centerCard);
-//   } else {
-//     res.send('Invalid Game Id'); //@todo response code
-//   }
-// });
-
 module.exports = router;

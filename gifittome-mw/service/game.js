@@ -67,7 +67,7 @@ io.on('connection', socket => {
 
     var game = get(gameId);
     if (game) {
-      let player = game.player[playerToResubscribe.name];
+      let player = game.player[playerToResubscribe];
       if (player) {
         socket.join(game.id);
         player.updateSocket(socket);
@@ -311,8 +311,8 @@ Game.prototype.startNextRoundVoting = function () {
         this.currentRound.nextRound[p.name] = true;
 
         this.nextRoundCount++;
-        console.log('Round count: ', nextRoundCount);
-        if (nextRoundCount === playerArr.length) {
+        console.log('Round count: ', this.nextRoundCount);
+        if (this.nextRoundCount === playerArr.length) {
           this.resetPlayerStatus();
           this.startRound();
         } else {
@@ -325,10 +325,11 @@ Game.prototype.startNextRoundVoting = function () {
 
 Game.prototype.onNextRoundVote = function (p) {
   this.currentRound.nextRound[p.name] = true;
+  let playerArr = Object.values(this.player);
 
   this.nextRoundCount++;
-  console.log('Round count: ', nextRoundCount);
-  if (nextRoundCount === playerArr.length) {
+  console.log('Round count: ', this.nextRoundCount);
+  if (this.nextRoundCount === playerArr.length) {
     this.resetPlayerStatus();
     this.startRound();
   } else {

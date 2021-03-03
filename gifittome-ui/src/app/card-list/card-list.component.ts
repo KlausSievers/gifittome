@@ -42,7 +42,7 @@ export class CardListComponent implements OnInit {
   }
 
   public cardClicked(index) {
-    if (this.gameService.isRoundStatus(RoundStatus.CHOOSE_WINNER)) {
+    if (this.gameService.isRoundStatus(RoundStatus.CHOOSE_WINNER) &&  this.gameService.isChoosingPlayer(this.gameService.getPlayer())) {
       this.cardSelectionService.cardClicked(index);
     } else {
       if (this.gameService.isChoosingPlayer(this.gameService.getPlayer()) && !this.gameService.getCards()[index].value) {
