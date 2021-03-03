@@ -80,7 +80,7 @@ function buildUrl(verb) {
 //@todo missing params media_filter, ar_range
 function buildParams(verbParams, tenor) {
   var defaultParms = {
-    //  key: tenor.apiKey,
+    key: tenor.apiKey,
     locale: tenor.locale,
     contentfilter: tenor.contentFilter
   };
