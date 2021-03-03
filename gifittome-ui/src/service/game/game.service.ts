@@ -10,6 +10,7 @@ import { Card } from './card';
 import { CardSelectionService } from '../card-selection/card-selection.service';
 import { environment } from './../../environments/environment';
 import { Router } from '@angular/router';
+import { CookieService } from 'src/app/cookie.service';
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +29,8 @@ export class GameService {
     private http: HttpClient,
     private snackBar: MatSnackBar,
     private router: Router,
-    private cardSelectionService: CardSelectionService) {
+    private cardSelectionService: CardSelectionService,
+    private cookieService: CookieService) {
   }
 
   public get(): Game {
@@ -71,6 +73,46 @@ export class GameService {
     return idObserveable;
   }
 
+  public request(id) {
+    let cookie = this.cookieService.getValue('game');
+    this.game = new Game();
+    this.game.id = id;
+
+    //@todo game id im cookie ueberpruefen??
+    if (cookie.playerId) {
+      let playerObserveable = this.http.get<any>('/game/' + id + '/player/' + cookie.playerId);
+      playerObserveable.subscribe(player => {
+        if (player) {
+          this.player = player;
+          this.getSocket().subscribe(() => {
+            console.log('connected');
+
+          });
+
+          let gameObserveable = this.http.get<any>('/game/' + id);
+          gameObserveable.subscribe(game => {
+            this.game = game;
+          });
+
+          let roundObserveable = this.http.get<any>('/game/' + id + '/round');
+          roundObserveable.subscribe(round => {
+            this.round = new Round();
+            this.round.gif = round.gif;
+            this.round.choosingPlayer = round.choosingPlayer;
+            this.round.cardPlayed = !!round.playedCards[this.player.name];
+            this.round.status = round.status;
+
+            this.openCards = round.revealedCards;
+
+            //nextRound vote
+            //player okay state
+          });
+        }
+      });
+    }
+  }
+
+
   private getSocket() {
     return new Observable((observer) => {
       if (this.socket) {
@@ -79,8 +121,18 @@ export class GameService {
       } else {
         this.socket = io(environment.websocket);
         this.socket.on('connect', () => {
-          observer.next(this.socket);
-          observer.complete();
+          if(this.game !== null && this.player !== null) {
+            this.emit('resubscribe', {
+              gameId: this.game.id,
+              player: this.player.name
+            }).subscribe(() => {
+              observer.next(this.socket);
+              observer.complete();
+            });
+          } else {
+            observer.next(this.socket);
+            observer.complete();
+          }
         });
 
         this.socket.on('player-joined', (response) => {
@@ -94,7 +146,7 @@ export class GameService {
 
         this.socket.on('game-update', (response) => {
           this.game = response.game;
-          if(response.msg) {
+          if (response.msg) {
             this.snackBar.open(response.msg, '', {
               duration: 2000,
             });
@@ -145,7 +197,7 @@ export class GameService {
     });
   }
 
-  public join(gameId: string, rawPlayer:any) {
+  public join(gameId: string, rawPlayer: any) {
     return new Observable((observer) => {
       this.emit('/game/join', {
         gameId: gameId,
@@ -210,12 +262,12 @@ export class GameService {
   }
 
   public leave() {
-    this.emit('game/leave', {}).subscribe(()=> {
+    this.emit('game/leave', {}).subscribe(() => {
       this.router.navigate(['/']);
     });
   }
 
-  public kick(player:Player) {
+  public kick(player: Player) {
     this.emit('game/kick', player).subscribe();
   }
 
