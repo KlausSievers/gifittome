@@ -40,4 +40,13 @@ export class Round {
   public set status(value: RoundStatus) {
     this._status = value;
   }
+
+  private _gifsToSelect;
+  public get gifsToSelect() {
+    return this._gifsToSelect;
+  }
+  public set gifsToSelect(value) {
+    this._gifsToSelect = value;
+  }
+
 }

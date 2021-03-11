@@ -76,7 +76,11 @@ io.on('connection', socket => {
           player.makeHost();
         }
 
-        if (game.currentRound.status === RoundStatus.CHOOSE_CARDS) {
+        if (game.currentRound.status === RoundStatus.CHOOSE_GIF) {
+          if (game.choosingPlayer.name === player.name) {
+            player.onGifSelected();
+          }
+        } else if (game.currentRound.status === RoundStatus.CHOOSE_CARDS) {
           player.onCardSelected();
         } else if (game.currentRound.status === RoundStatus.REVEAL_CARDS) {
           if (game.choosingPlayer.name === player.name) {
@@ -146,38 +150,44 @@ Game.prototype.getNextCards = function (count) {
   return this.stock.splice(0, count);
 };
 
+Game.prototype.getGifsToSelect = function (count) {
+  let gifs = [];
+  let gifIds = [];
+
+  for (let i = 0; i < count; i++) {
+    let gif = null;
+    do {
+      gif = gifService.random();
+    } while (this.playedGifs.includes(gif.id) || gifIds.includes(gif.id));
+    gifs.push(gif);
+    gifIds.push(gif.id);
+  }
+  return gifs;
+}
+
 
 Game.prototype.startRound = function () {
-  var gif = null;
-  do {
-    gif = gifService.random();
-  } while (this.playedGifs.includes(gif.id));
+  var gifsToSelect = this.getGifsToSelect(3);
 
   this.round++;
-  this.playedGifs.push(gif.id);
   this.openedCards = 0;
 
   this.choosingPlayer = this.getNextChoosingPlayer();
   this.playedCards = [];
   this.currentRound = {
-    status: RoundStatus.CHOOSE_CARDS,
-    gif: gif,
+    status: RoundStatus.CHOOSE_GIF,
+    gif: null,
+    gifsToSelect: gifsToSelect,
     choosingPlayer: this.choosingPlayer.getPlayerToSend(),
     playedCards: {},
     nextRound: {},
     revealedCards: []
   };
 
-  for (let i = 0; i < this.playerOrder.length; i++) {
-    let p = this.playerOrder[i];
-    if (this.choosingPlayerIdx !== i) {
-      p.onCardSelected();
-    }
-  }
+  this.choosingPlayer.onGifSelected();
 
   this.sendGameUpdate();
   io.in(this.id).emit('start-round', this.currentRound);
-  return gif;
 };
 
 Game.prototype.getNextChoosingPlayer = function () {
@@ -187,6 +197,22 @@ Game.prototype.getNextChoosingPlayer = function () {
   }
 
   return this.playerOrder[this.choosingPlayerIdx];
+};
+
+Game.prototype.onGifSelected = function (gif, player, reply) {
+  this.currentRound.gif = gif;
+  this.currentRound.status = RoundStatus.CHOOSE_CARDS;
+  this.playedGifs.push(gif.id);
+
+  for (let i = 0; i < this.playerOrder.length; i++) {
+    let p = this.playerOrder[i];
+    if (this.choosingPlayerIdx !== i) {
+      p.onCardSelected();
+    }
+  }
+
+  this.sendGameUpdate();
+  io.in(this.id).emit('start-choosing-cards', this.currentRound);
 };
 
 Game.prototype.onCardSelected = function (card, player, reply) {
@@ -204,10 +230,9 @@ Game.prototype.onCardSelected = function (card, player, reply) {
   if (this.playedCards.length === this.playerOrder.length - 1) {
     this.currentRound.status = RoundStatus.REVEAL_CARDS;
 
-    for(let i = 0; i < this.playerOrder.length - 1; i++) {
-      this.currentRound.revealedCards.push({_value: ''});
+    for (let i = 0; i < this.playerOrder.length - 1; i++) {
+      this.currentRound.revealedCards.push({ _value: '' });
     }
-    
 
     console.log('All players added their card');
     this.resetPlayerStatus();
@@ -234,10 +259,10 @@ Game.prototype.onCardRevealed = function (revealMsg) {
     toOpen.isOpen = true;
     toOpen.card.index = revealMsg.index;
 
-    this.currentRound.revealedCards[revealMsg.index] =  {
+    this.currentRound.revealedCards[revealMsg.index] = {
       value: this.playedCards[revealMsg.index].card['_value']
     };
-      
+
 
     io.in(this.id).emit('card-revealed', toOpen.card);
 
@@ -264,7 +289,7 @@ Game.prototype.onWinnerSelected = function (winnerMsg) {
   this.currentRound.status = RoundStatus.START_NEXT_ROUND;
   this.currentRound.winner = winningCard.player.getPlayerToSend();
 
-  for(let i = 0; i < this.playerOrder.length - 1; i++) {
+  for (let i = 0; i < this.playerOrder.length - 1; i++) {
     this.currentRound.revealedCards[i].player = this.playedCards[i].player.name;
   }
 
@@ -559,6 +584,12 @@ Player.prototype.updateSocket = function (socket) {
   let self = this;
   this.socket.on('game/leave', (msg, reply) => {
     self.game.leaveGame(self, reply);
+  });
+};
+
+Player.prototype.onGifSelected = function () {
+  this.socket.on('gif-selected', (gif, reply) => {
+    this.game.onGifSelected(gif, this, reply);
   });
 };
 

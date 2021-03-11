@@ -1,4 +1,4 @@
-<div class="card-list" fxFlex="100" fxLayout="row" fxLayoutGap="1em" *ngIf="gameService.getRound().status < RoundStatus.REVEAL_CARDS">
+<div class="card-list" fxFlex="100" fxLayout="row" fxLayoutGap="1em" *ngIf="gameService.getRound().status > RoundStatus.CHOOSE_GIF && gameService.getRound().status < RoundStatus.REVEAL_CARDS">
   <!--mat-card *ngFor="let card of gameService.player.cards" (click)="playCard(card)">
       {{card.value}}
     </mat-card-->

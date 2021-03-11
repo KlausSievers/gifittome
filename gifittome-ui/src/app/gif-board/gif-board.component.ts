@@ -11,6 +11,7 @@ import { CardSelectionService } from 'src/service/card-selection/card-selection.
 export class GifBoardComponent implements OnInit {
   RoundStatus = RoundStatus;
 
+  private selectedGif;
 
   constructor(
     public gameService: GameService,
@@ -33,6 +34,25 @@ export class GifBoardComponent implements OnInit {
     this.cardSelectionService.resetSelectedCardIdx();
   }
 
+  public getGifsToSelect() {
+    return this.gameService.getRound().gifsToSelect;
+  }
+
+  public selectGif(gif) {
+    this.selectedGif = gif;
+  }
+
+  public isGifSelected() {
+    return !!this.selectedGif;
+  }
+
+  public getSelectedGif() {
+    return this.selectedGif;
+  }
+
+  public sendGif() {
+    this.gameService.selectGif(this.selectedGif);
+  }
 
 
 }

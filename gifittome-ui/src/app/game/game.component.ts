@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { GameService } from 'src/service/game/game.service';
 import { RoundStatus } from 'src/service/game/round';
+import { TitleService } from '../title.service';
 
 @Component({
   selector: 'app-game',
@@ -14,7 +15,8 @@ export class GameComponent implements OnInit {
 
   constructor(
     public gameService: GameService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private titleService : TitleService
   ) {
 
     let gameId = null;
@@ -33,5 +35,6 @@ export class GameComponent implements OnInit {
 // Socket Reconnect beachten und neu subscriben!
 
   ngOnInit(): void {
+    this.titleService.setTitle('Play Game');
   }
 }

@@ -98,6 +98,7 @@ export class GameService {
           roundObserveable.subscribe(round => {
             this.round = new Round();
             this.round.gif = round.gif;
+            this.round.gifsToSelect = round.gifsToSelect;
             this.round.choosingPlayer = round.choosingPlayer;
             this.round.cardPlayed = !!round.playedCards[this.player.name];
             this.round.status = round.status;
@@ -157,10 +158,16 @@ export class GameService {
 
         this.socket.on('start-round', (response) => {
           this.round = response;
-          this.round.status = RoundStatus.CHOOSE_CARDS;
+          this.round.status = RoundStatus.CHOOSE_GIF;
           this.winnerCard = null;
           this.openCards = [];
           console.log('start-round', response);
+        });
+
+        this.socket.on('start-choosing-cards', (response) => {
+          this.round = response;
+          this.round.status = RoundStatus.CHOOSE_CARDS;
+          console.log('start-choosing-cards', response);
         });
 
         this.socket.on('reveal-cards', () => {
@@ -227,6 +234,10 @@ export class GameService {
     return this.emit('card-selected', card).subscribe(() => {
       this.round.cardPlayed = true;
     });
+  }
+
+  public selectGif(gif) {
+    return this.emit('gif-selected', gif).subscribe(() => {});
   }
 
   public revealCard(index: number) {
