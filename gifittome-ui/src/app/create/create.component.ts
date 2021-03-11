@@ -4,6 +4,7 @@ import { GameService } from '../../service/game/game.service';
 import { GifService, Gif } from '../../service/gif/gif.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { timer } from 'rxjs';
+import { TitleService } from '../title.service';
 
 @Component({
   selector: 'app-create',
@@ -19,12 +20,15 @@ export class CreateComponent implements OnInit {
   constructor(
     private gameService: GameService,
     private gifService: GifService,
-    private router: Router
+    private router: Router,
+    private titleService: TitleService
   ) {
 
   }
 
   ngOnInit(): void {
+    this.titleService.setTitle('the online gif game');
+
     //@todo same as in join
     const startGifSubscribtion = this.gifService.start().subscribe((data: Gif[]) => {
       startGifSubscribtion.unsubscribe();

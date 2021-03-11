@@ -4,6 +4,7 @@ import { GifService, Gif } from '../../service/gif/gif.service';
 import { GameService } from '../../service/game/game.service';
 import { timer } from 'rxjs';
 import { CookieService } from '../cookie.service';
+import { TitleService } from '../title.service';
 
 
 @Component({
@@ -24,10 +25,13 @@ export class JoinComponent implements OnInit {
     private gifService: GifService,
     private cookieService: CookieService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private titleService: TitleService
   ) { }
 
   ngOnInit(): void {
+    this.titleService.setTitle('Join Game');
+
     this.route.params.subscribe(params => {
       this.gameId = params['gameId'];
     });
